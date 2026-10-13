@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta content="Codeur X" name="keywords">
+  <meta name="description"
+    content="Groupe de développeurs informatiques professionnels. Sites web, applications mobiles, UI/UX design et solutions digitales." />
+  <title>Services — CODEUR X | Votre vision, notre code</title>
+
+  <link href="img/WhatsApp Image 2026-03-25 at 14.32.51.jpeg" rel="icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ---- SERVICE DETAIL CARD ---- */
+    .service-full-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--glass-shadow);
+      transition: var(--transition);
+    }
+
+    .service-full-card:hover {
+      background: var(--glass-bg-hover);
+      border-color: var(--glass-border-hover);
+      transform: translateY(-8px);
+      box-shadow: var(--glass-shadow-hover);
+    }
+
+    .sfc-img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      transition: var(--transition-slow);
+    }
+
+    .sfc-img-wrap {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .sfc-img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 50%, rgba(10, 14, 26, 0.8));
+    }
+
+    .service-full-card:hover .sfc-img {
+      transform: scale(1.06);
+    }
+
+    .sfc-body {
+      padding: 28px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.16) 100%);
+      backdrop-filter: blur(28px) saturate(210%);
+      -webkit-backdrop-filter: blur(28px) saturate(210%);
+      border-top: 1px solid rgba(255, 255, 255, 0.75);
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.95);
+      position: relative;
+      z-index: 1;
+      transition: var(--transition);
+    }
+
+    .service-full-card:hover .sfc-body {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.58) 0%, rgba(255, 255, 255, 0.28) 100%);
+    }
+
+    .sfc-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 18px;
+      transition: var(--transition);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 4px 14px rgba(11, 42, 91, 0.07), inset 0 1px 2px rgba(255, 255, 255, 1);
+    }
+
+    .service-full-card:hover .sfc-icon {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 8px 22px rgba(14, 154, 152, 0.3);
+    }
+
+    .sfc-body h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .sfc-body p {
+      font-size: 0.9rem;
+      color: var(--gray);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    .sfc-features {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .sfc-features li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--gray-light);
+    }
+
+    .sfc-features li i {
+      color: #25D366;
+      font-size: 0.7rem;
+    }
+
+    .sfc-price {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      background: rgba(14, 154, 152, 0.1);
+      border: 1px solid var(--border-accent);
+      border-radius: 10px;
+      margin-bottom: 18px;
+    }
+
+    .sfc-price .from {
+      font-size: 0.78rem;
+      color: var(--gray);
+    }
+
+    .sfc-price .amount {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      font-weight: 800;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Color variants */
+    .sfc-icon.blue {
+      background: rgba(14, 154, 152, 0.18);
+      color: var(--teal);
+      border: 1px solid rgba(14, 154, 152, 0.35);
+    }
+
+    .sfc-icon.cyan {
+      background: rgba(20, 184, 200, 0.15);
+      color: var(--cyan);
+      border: 1px solid rgba(20, 184, 200, 0.35);
+    }
+
+    .sfc-icon.purple {
+      background: rgba(139, 92, 246, 0.12);
+      color: #8b5cf6;
+      border: 1px solid rgba(139, 92, 246, 0.3);
+    }
+
+    .sfc-icon.green {
+      background: rgba(37, 211, 102, 0.12);
+      color: #25D366;
+      border: 1px solid rgba(37, 211, 102, 0.3);
+    }
+
+    .sfc-icon.orange {
+      background: rgba(251, 146, 60, 0.12);
+      color: #fb923c;
+      border: 1px solid rgba(251, 146, 60, 0.3);
+    }
+
+    .sfc-icon.pink {
+      background: rgba(236, 72, 153, 0.12);
+      color: #ec4899;
+      border: 1px solid rgba(236, 72, 153, 0.3);
+    }
+
+    /* ---- PROCESS ---- */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+      position: relative;
+    }
+
+    .process-grid::before {
+      content: '';
+      position: absolute;
+      top: 32px;
+      left: 12%;
+      right: 12%;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent), var(--accent2));
+      z-index: 0;
+    }
+
+    .process-card {
+      text-align: center;
+      padding: 30px 20px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.16) 100%);
+      backdrop-filter: blur(28px) saturate(210%);
+      -webkit-backdrop-filter: blur(28px) saturate(210%);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 8px 24px rgba(11, 42, 91, 0.05), inset 0 1px 1px rgba(255,255,255,0.95);
+      transition: var(--transition);
+      position: relative;
+      z-index: 1;
+    }
+
+    .process-card:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.58) 0%, rgba(255, 255, 255, 0.28) 100%);
+      border-color: rgba(20, 184, 200, 0.5);
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(14, 154, 152, 0.14);
+    }
+
+    .process-num {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--white);
+      margin: 0 auto 16px;
+      box-shadow: 0 8px 20px var(--accent-glow);
+    }
+
+    .process-card h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .process-card p {
+      font-size: 0.82rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* ---- PRICING ---- */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .pricing-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.16) 100%);
+      backdrop-filter: blur(28px) saturate(210%);
+      -webkit-backdrop-filter: blur(28px) saturate(210%);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: var(--radius-lg);
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: 0 8px 28px rgba(11, 42, 91, 0.05), inset 0 1px 1px rgba(255,255,255,0.95);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card.featured {
+      border-color: rgba(20, 184, 200, 0.55);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.25) 100%);
+      box-shadow: 0 12px 40px rgba(14, 154, 152, 0.16), inset 0 1px 2px rgba(255,255,255,1);
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: 16px;
+      right: -30px;
+      background: var(--gradient);
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 5px 40px;
+      transform: rotate(45deg);
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-accent);
+    }
+
+    .pricing-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 14px;
+      background: rgba(14, 154, 152, 0.15);
+      border: 1px solid var(--border-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: var(--cyan);
+      margin: 0 auto 20px;
+    }
+
+    .pricing-plan {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .pricing-price {
+      font-family: var(--font-mono);
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .pricing-period {
+      font-size: 0.82rem;
+      color: var(--gray);
+      margin-bottom: 30px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 30px;
+      text-align: left;
+    }
+
+    .pricing-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: var(--gray-light);
+      padding: 8px 0;
+    }
+
+    .pricing-features li:last-child {
+      border-bottom: none;
+    }
+
+    .pricing-features li i.check {
+      color: #25D366;
+    }
+
+    .pricing-features li i.cross {
+      color: #ff4444;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .process-grid::before {
+        display: none;
+      }
+
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sfc-features {
+        grid-template-columns: 1fr;
+      }
+
+      .page-header h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-3d-wrapper">
+      <div class="loader-3d-aura"></div>
+      <div class="loader-3d-logo">
+        <img src="img/cx-4.png" alt="Logo CODEUR X" class="loader-3d-img" />
+        <div class="loader-3d-shine"></div>
+      </div>
+      <div class="loader-3d-shadow"></div>
+    </div>
+    <div class="loader-bar">
+      <div class="loader-progress"></div>
+    </div>
+  </div>
+
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="CODEUR X Accueil">
+        <span class="logo-text">CODEUR <span class="logo-x">X</span></span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">Accueil</a></li>
+        <li><a href="about.html" class="nav-link">À Propos</a></li>
+        <li><a href="services.html" class="nav-link active">Services</a></li>
+        <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+        <li><a href="contact.html" class="nav-cta">Nous Contacter</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="particles-bg"></div>
+    <!-- Cercles décoratifs de marque -->
+    <div style="position:absolute;top:25px;right:40px;pointer-events:none;opacity:0.8;">
+      <div style="width:40px;height:40px;border-radius:50%;background:var(--teal);box-shadow:0 4px 15px var(--accent-glow);"></div>
+      <div style="width:28px;height:28px;border-radius:50%;background:var(--cyan);position:absolute;bottom:-10px;right:-10px;box-shadow:0 4px 15px var(--accent2-glow);"></div>
+    </div>
+    <div class="page-header-badge"><i class="fas fa-layer-group"></i> Votre vision, notre code</div>
+    <h1>Nos Services & <span class="keyword-teal">Solutions Digitales</span></h1>
+    <p>Des solutions technologiques de pointe et sur mesure pour propulser votre croissance et votre visibilité en ligne.</p>
+  </div>
+
+  <!-- SERVICES GRID -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge"><i class="fas fa-star"></i> Solutions Complètes</div>
+        <h2>Tout ce dont vous avez <span class="gradient-text">besoin</span></h2>
+        <p>Nous couvrons l'ensemble du spectre digital pour votre succès</p>
+      </div>
+      <div class="grid-3">
+
+        <!-- Service 1 -->
+        <div class="service-full-card reveal delay-1">
+          <div class="sfc-img-wrap">
+            <img class="sfc-img" src="img/Site.jpg" alt="Création de sites web" loading="lazy" />
+          </div>
+          <div class="sfc-body">
+            <div class="sfc-icon blue"><i class="fas fa-globe"></i></div>
+            <h3>Création de Sites Web</h3>
+            <p>Sites vitrines modernes, e-commerce, portails d'entreprise et landing pages haute conversion. Responsive,
+              rapide et optimisé SEO.</p>
+            <ul class="sfc-features">
+              <li><i class="fas fa-check-circle"></i> Design sur mesure</li>
+              <li><i class="fas fa-check-circle"></i> Responsive mobile</li>
+              <li><i class="fas fa-check-circle"></i> Optimisation SEO</li>
+              <li><i class="fas fa-check-circle"></i> Performance maximale</li>
+              <li><i class="fas fa-check-circle"></i> Panel admin</li>
+              <li><i class="fas fa-check-circle"></i> Sécurité SSL</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center">
+              <i class="fas fa-paper-plane"></i> Demander un devis
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service-full-card reveal delay-2">
+          <div class="sfc-img-wrap">
+            <img class="sfc-img" src="img/App.jpg" alt="Applications mobiles" loading="lazy" />
+          </div>
+          <div class="sfc-body">
+            <div class="sfc-icon cyan"><i class="fas fa-mobile-alt"></i></div>
+            <h3>Applications Mobiles</h3>
+            <p>Développement d'applications Android & iOS natives ou cross-platform avec React Native et Flutter. UX
+              soignée et performances natives.</p>
+            <ul class="sfc-features">
+              <li><i class="fas fa-check-circle"></i> Android & iOS</li>
+              <li><i class="fas fa-check-circle"></i> React Native</li>
+              <li><i class="fas fa-check-circle"></i> Flutter</li>
+              <li><i class="fas fa-check-circle"></i> API intégrée</li>
+              <li><i class="fas fa-check-circle"></i> Push notifications</li>
+              <li><i class="fas fa-check-circle"></i> Paiement mobile</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center">
+              <i class="fas fa-paper-plane"></i> Demander un devis
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-full-card reveal delay-3">
+          <div class="sfc-img-wrap">
+            <img class="sfc-img" src="img/Ux.jpg" alt="UI/UX Design" loading="lazy" />
+          </div>
+          <div class="sfc-body">
+            <div class="sfc-icon purple"><i class="fas fa-palette"></i></div>
+            <h3>UI/UX Design</h3>
+            <p>Conception d'interfaces intuitives et expériences utilisateur mémorables. Prototypes interactifs, design
+              system et charte graphique.</p>
+            <ul class="sfc-features">
+              <li><i class="fas fa-check-circle"></i> Audit UX</li>
+              <li><i class="fas fa-check-circle"></i> Wireframes</li>
+              <li><i class="fas fa-check-circle"></i> Prototypes Figma</li>
+              <li><i class="fas fa-check-circle"></i> Design system</li>
+              <li><i class="fas fa-check-circle"></i> Tests utilisateurs</li>
+              <li><i class="fas fa-check-circle"></i> Charte graphique</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center">
+              <i class="fas fa-paper-plane"></i> Demander un devis
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="service-full-card reveal delay-1">
+          <div class="sfc-img-wrap">
+            <img class="sfc-img" src="img/SE.jpg" alt="Maintenance informatique" loading="lazy" />
+          </div>
+          <div class="sfc-body">
+            <div class="sfc-icon green"><i class="fas fa-tools"></i></div>
+            <h3>Système Embarqué</h3>
+            <p>Service de conception, de développement, d’amélioration, d’intégration et d’optimisation des systèmes
+              embarqués intelligents, créant solutions électroniques et informatiques autonomes et adaptées aux besoins
+              spécifiques de l’industrie.</p>
+            <ul class="sfc-features">
+              <li><i class="fas fa-check-circle"></i> Support 24/7</li>
+              <li><i class="fas fa-check-circle"></i> Surveillance</li>
+              <li><i class="fas fa-check-circle"></i> Automatisation</li>
+              <li><i class="fas fa-check-circle"></i> Optimisation</li>
+              <li><i class="fas fa-check-circle"></i> Controle à distance</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center">
+              <i class="fas fa-paper-plane"></i> Demander un devis
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="service-full-card reveal delay-2">
+          <div class="sfc-img-wrap">
+            <img class="sfc-img" src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80"
+              alt="Hébergement web" loading="lazy" />
+          </div>
+          <div class="sfc-body">
+            <div class="sfc-icon orange"><i class="fas fa-server"></i></div>
+            <h3>Hébergement Web</h3>
+            <p>Solutions d'hébergement performantes et sécurisées. Serveurs dédiés, VPS, et cloud avec haute
+              disponibilité et support technique.</p>
+            <ul class="sfc-features">
+              <li><i class="fas fa-check-circle"></i> Uptime 99.9%</li>
+              <li><i class="fas fa-check-circle"></i> SSL gratuit</li>
+              <li><i class="fas fa-check-circle"></i> CDN intégré</li>
+              <li><i class="fas fa-check-circle"></i> Sauvegarde daily</li>
+              <li><i class="fas fa-check-circle"></i> Panel cPanel</li>
+              <li><i class="fas fa-check-circle"></i> Migration gratuite</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center">
+              <i class="fas fa-paper-plane"></i> Demander un devis
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="service-full-card reveal delay-3">
+          <div class="sfc-img-wrap">
+            <img class="sfc-img" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80"
+              alt="Solutions digitales" loading="lazy" />
+          </div>
+          <div class="sfc-body">
+            <div class="sfc-icon pink"><i class="fas fa-magic"></i></div>
+            <h3>Solutions Digitales</h3>
+            <p>Développement de logiciels sur mesure, ERP, CRM, API REST, automatisation et intégration de systèmes pour
+              votre entreprise.</p>
+            <ul class="sfc-features">
+              <li><i class="fas fa-check-circle"></i> ERP/CRM sur mesure</li>
+              <li><i class="fas fa-check-circle"></i> API REST & GraphQL</li>
+              <li><i class="fas fa-check-circle"></i> Automatisation</li>
+              <li><i class="fas fa-check-circle"></i> Intégration systèmes</li>
+              <li><i class="fas fa-check-circle"></i> Consulting IT</li>
+              <li><i class="fas fa-check-circle"></i> Formation équipes</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center">
+              <i class="fas fa-paper-plane"></i> Demander un devis
+            </a>
+          </div>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="service-full-card reveal delay-3">
+          <div class="sfc-img-wrap">
+            <img class="sfc-img" src="img/Copilot_20260512_110723.png" alt="Reprise de projet" loading="lazy" />
+          </div>
+          <div class="sfc-body">
+            <div class="sfc-icon pink"><i class="fas fa-magic"></i></div>
+            <h3>analyse de données & autmatisation de tache pour entreprise</h3>
+            </h3>
+            <p>On aide les entreprises à transformer leurs données en décisions rapides et fiables, et à automatiser les
+              tâches répétitives pour libérer du temps et augmenter la productivité.</p>
+            <ul class="sfc-features">
+              <li><i class="fas fa-check-circle"></i> Extraction & Nettoyage de données</li>
+              <li><i class="fas fa-check-circle"></i> Dashboard interactifs</li>
+              <li><i class="fas fa-check-circle"></i> Automatisation</li>
+              <li><i class="fas fa-check-circle"></i> Intégration systèmes</li>
+              <li><i class="fas fa-check-circle"></i> Consulting IT</li>
+              <li><i class="fas fa-check-circle"></i> Formation équipes</li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center">
+              <i class="fas fa-paper-plane"></i> Demander un devis
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section style="background:var(--secondary)">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge"><i class="fas fa-cogs"></i> Notre Processus</div>
+        <h2>Comment nous <span class="gradient-text">travaillons</span></h2>
+        <p>Un processus éprouvé pour garantir le succès de chaque projet</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-card reveal delay-1">
+          <div class="process-num">01</div>
+          <h4>Analyse & Consultation</h4>
+          <p>Nous écoutons vos besoins, analysons votre marché et définissons ensemble les objectifs du projet.</p>
+        </div>
+        <div class="process-card reveal delay-2">
+          <div class="process-num">02</div>
+          <h4>Design & Prototypage</h4>
+          <p>Conception des maquettes visuelles et prototypes interactifs pour validation avant développement.</p>
+        </div>
+        <div class="process-card reveal delay-3">
+          <div class="process-num">03</div>
+          <h4>Développement</h4>
+          <p>Développement agile avec sprints réguliers et mises à jour fréquentes. Code propre et testé.</p>
+        </div>
+        <div class="process-card reveal delay-4">
+          <div class="process-num">04</div>
+          <h4>Livraison & Support</h4>
+          <p>Déploiement, formation, et support continu pour assurer la pérennité de votre solution.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA -->
+  <section style="background:var(--secondary);padding:80px 0">
+    <div class="container" style="text-align:center">
+      <div class="reveal">
+        <h2 style="font-size:clamp(1.8rem,4vw,3rem);font-weight:900;margin-bottom:20px">
+          Vous avez un projet ? <span class="gradient-text">Parlons-en !</span>
+        </h2>
+        <p
+          style="color:var(--gray);font-size:1.05rem;margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto">
+          Devis gratuit sous 24h. Aucun engagement. Nous analysons votre projet et vous proposons la meilleure solution.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center">
+
+          <a href="https://wa.me/243970037759" target="_blank" class="btn btn-whatsapp"><i
+              class="fab fa-whatsapp"></i>Discuter sur WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/243970037759" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="tooltip">Contactez-nous sur WhatsApp</span>
+  </a>
+
+  <!-- Scroll to top -->
+  <button class="scroll-top" id="scrollTop" aria-label="Retour en haut">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <div class="toast-content">
+      <div class="toast-icon"><i class="fas fa-check"></i></div>
+      <div class="toast-text">
+        <h5>Succès</h5>
+        <p>Message envoyé avec succès</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

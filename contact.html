@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta content="Codeur X" name="keywords">
+  <meta name="description"
+    content="Groupe de développeurs informatiques professionnels. Sites web, applications mobiles, UI/UX design et solutions digitales." />
+  <title>Contact — CODEUR X | Votre vision, notre code</title>
+
+  <link href="img/WhatsApp Image 2026-03-25 at 14.32.51.jpeg" rel="icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ---- CONTACT LAYOUT ---- */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 50px;
+      align-items: start;
+    }
+
+    /* ---- CONTACT INFO ---- */
+    .contact-info-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--glass-shadow);
+      position: sticky;
+      top: 120px;
+    }
+
+    .contact-info-card h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .contact-info-card p {
+      color: var(--text-body);
+      font-size: 0.9rem;
+      line-height: 1.75;
+      margin-bottom: 32px;
+    }
+
+    .contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 18px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.18) 100%);
+      backdrop-filter: blur(20px) saturate(210%);
+      -webkit-backdrop-filter: blur(20px) saturate(210%);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: 14px;
+      transition: var(--transition);
+      text-decoration: none;
+      color: var(--navy);
+      box-shadow: 0 4px 15px rgba(11, 42, 91, 0.04), inset 0 1px 1px rgba(255, 255, 255, 0.95);
+    }
+
+    .contact-item:hover {
+      border-color: var(--glass-border-hover);
+      transform: translateX(5px);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 100%);
+      box-shadow: var(--glass-shadow-hover);
+    }
+
+    .contact-item .ci-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.28);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      box-shadow: 0 4px 12px rgba(11, 42, 91, 0.05), inset 0 1px 1px rgba(255,255,255,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .contact-item:hover .ci-icon {
+      transform: scale(1.1) rotate(4deg);
+    }
+
+    .ci-icon.email {
+      background: rgba(14, 154, 152, 0.15);
+      color: var(--teal);
+      border: 1px solid rgba(14, 154, 152, 0.3);
+    }
+
+    .ci-icon.whatsapp {
+      background: rgba(37, 211, 102, 0.15);
+      color: #25D366;
+      border: 1px solid rgba(37, 211, 102, 0.3);
+    }
+
+    .ci-icon.location {
+      background: rgba(236, 72, 153, 0.15);
+      color: #ec4899;
+      border: 1px solid rgba(236, 72, 153, 0.3);
+    }
+
+    .ci-icon.phone {
+      background: rgba(251, 146, 60, 0.15);
+      color: #fb923c;
+      border: 1px solid rgba(251, 146, 60, 0.3);
+    }
+
+    .ci-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .ci-text h5 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 2px;
+    }
+
+    .ci-text span {
+      font-size: 0.8rem;
+      color: var(--text-body);
+      display: block;
+      overflow-wrap: break-word;
+    }
+
+    /* Direct contact buttons */
+    .direct-contact {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    /* Map embed */
+    .map-embed {
+      border-radius: 12px;
+      overflow: hidden;
+      height: 220px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.18) 100%);
+      backdrop-filter: blur(20px) saturate(200%);
+      -webkit-backdrop-filter: blur(20px) saturate(200%);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      position: relative;
+    }
+
+    .map-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .map-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.22) 100%);
+      backdrop-filter: blur(20px) saturate(200%);
+      -webkit-backdrop-filter: blur(20px) saturate(200%);
+    }
+
+    .map-placeholder i {
+      font-size: 3rem;
+      color: var(--accent);
+    }
+
+    .map-placeholder p {
+      font-size: 0.85rem;
+      color: var(--text-body);
+    }
+
+    /* ---- CONTACT FORM ---- */
+    .contact-form-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      box-shadow: var(--glass-shadow);
+    }
+
+    .contact-form-card h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .contact-form-card>p {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-bottom: 32px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .form-submit-area {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .form-submit-area .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .form-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--gray);
+      font-size: 0.8rem;
+    }
+
+    .form-divider::before,
+    .form-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Subject select custom */
+    .subject-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+
+    .subject-opt {
+      padding: 10px 8px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      background: transparent;
+      color: var(--gray-light);
+      font-family: var(--font-main);
+      font-size: 0.78rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .subject-opt i {
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+
+    .subject-opt.selected,
+    .subject-opt:hover {
+      border-color: var(--cyan);
+      background: rgba(14, 154, 152, 0.15);
+      color: var(--white);
+    }
+
+    /* ---- FAQ ---- */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.16) 100%);
+      backdrop-filter: blur(24px) saturate(210%);
+      -webkit-backdrop-filter: blur(24px) saturate(210%);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(11, 42, 91, 0.05), inset 0 1px 1px rgba(255,255,255,0.95);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .faq-item:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.58) 0%, rgba(255, 255, 255, 0.28) 100%);
+      border-color: rgba(20, 184, 200, 0.5);
+    }
+
+    .faq-item.open {
+      border-color: rgba(20, 184, 200, 0.45);
+    }
+
+    .faq-question {
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .faq-question i {
+      color: var(--accent);
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .faq-item.open .faq-question i {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      padding: 0 22px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 200px;
+      padding: 0 22px 18px;
+    }
+
+    .faq-answer p {
+      color: var(--gray);
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+
+    /* ---- SUCCESS POPUP ---- */
+    .success-popup {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 3000;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .success-popup.show {
+      display: flex;
+    }
+
+    .success-card {
+      background: var(--dark-card2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 50px 40px;
+      text-align: center;
+      max-width: 420px;
+      width: 90%;
+      animation: fadeInUp 0.4s ease;
+    }
+
+    .success-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(37, 211, 102, 0.15);
+      border: 2px solid rgba(37, 211, 102, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #25D366;
+      margin: 0 auto 24px;
+      animation: floatPulse 2s ease infinite;
+    }
+
+    .success-card h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .success-card p {
+      color: var(--gray);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .contact-info-card,
+      .contact-form-card {
+        position: static;
+        padding: 35px 30px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      .contact-info-card,
+      .contact-form-card {
+        padding: 30px 25px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .subject-options {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .page-header {
+        padding: 120px 20px 60px;
+      }
+
+      .page-header h1 {
+        font-size: 2.2rem;
+      }
+      
+      .success-card {
+        padding: 40px 25px;
+        width: 95%;
+      }
+      
+      .success-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+      }
+      
+      .success-card h3 {
+        font-size: 1.25rem;
+      }
+      
+      .map-embed {
+        height: 200px;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .subject-options {
+        grid-template-columns: 1fr;
+      }
+      
+      .contact-layout {
+        gap: 20px;
+      }
+      
+      .contact-info-card,
+      .contact-form-card {
+        padding: 25px 20px;
+      }
+      
+      .contact-info-card h3,
+      .contact-form-card h3 {
+        font-size: 1.2rem;
+      }
+
+      .contact-item {
+        padding: 12px 14px;
+        gap: 12px;
+      }
+      
+      .ci-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+      
+      .ci-text h5 {
+        font-size: 0.8rem;
+      }
+      
+      .ci-text span {
+        font-size: 0.75rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-3d-wrapper">
+      <div class="loader-3d-aura"></div>
+      <div class="loader-3d-logo">
+        <img src="img/cx-4.png" alt="Logo CODEUR X" class="loader-3d-img" />
+        <div class="loader-3d-shine"></div>
+      </div>
+      <div class="loader-3d-shadow"></div>
+    </div>
+    <div class="loader-bar">
+      <div class="loader-progress"></div>
+    </div>
+  </div>
+
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="CODEUR X Accueil">
+        <span class="logo-text">CODEUR <span class="logo-x">X</span></span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">Accueil</a></li>
+        <li><a href="about.html" class="nav-link">À Propos</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+        <li><a href="contact.html" class="nav-cta active">Nous Contacter</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="particles-bg"></div>
+    <!-- Cercles décoratifs de marque -->
+    <div style="position:absolute;top:25px;right:40px;pointer-events:none;opacity:0.8;">
+      <div style="width:40px;height:40px;border-radius:50%;background:var(--teal);box-shadow:0 4px 15px var(--accent-glow);"></div>
+      <div style="width:28px;height:28px;border-radius:50%;background:var(--cyan);position:absolute;bottom:-10px;right:-10px;box-shadow:0 4px 15px var(--accent2-glow);"></div>
+    </div>
+    <div class="page-header-badge"><i class="fas fa-paper-plane"></i> Votre vision, notre code</div>
+    <h1>Contactez-nous & <span class="keyword-teal">Démarrons Votre Projet</span></h1>
+    <p>Notre équipe est à votre écoute pour échanger sur vos besoins, concevoir vos solutions et vous transmettre un devis détaillé sous 24h.</p>
+  </div>
+
+  <!-- CONTACT SECTION -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- Left: Contact Info -->
+        <div class="reveal-left">
+          <div class="contact-info-card">
+            <h3>Prenons <span class="gradient-text">contact</span></h3>
+            <p>Que ce soit pour un devis, une question ou juste pour dire bonjour, nous sommes là pour vous répondre
+              rapidement.</p>
+
+            <!-- Contact Items -->
+            <div class="contact-items">
+              <a href="mailto:codeurx66@gmail.com" class="contact-item">
+                <div class="ci-icon email"><i class="fas fa-envelope"></i></div>
+                <div class="ci-text">
+                  <h5>Email</h5>
+                  <span>codeurx66@gmail.com</span>
+                </div>
+                <i class="fas fa-arrow-right" style="color:var(--gray);margin-left:auto"></i>
+              </a>
+              <a href="https://wa.me/243970037759" target="_blank" class="contact-item">
+                <div class="ci-icon whatsapp"><i class="fab fa-whatsapp"></i></div>
+                <div class="ci-text">
+                  <h5>WhatsApp Direct</h5>
+                  <span>+243 970 037 759</span>
+                </div>
+                <i class="fas fa-arrow-right" style="color:var(--gray);margin-left:auto"></i>
+              </a>
+              <a href="tel:+243970037759" class="contact-item">
+                <div class="ci-icon phone"><i class="fas fa-phone-alt"></i></div>
+                <div class="ci-text">
+                  <h5>Téléphone</h5>
+                  <span>+243 970 037 759</span>
+                </div>
+                <i class="fas fa-arrow-right" style="color:var(--gray);margin-left:auto"></i>
+              </a>
+            </div>
+
+            <!-- Hours -->
+            <div
+              style="background:var(--secondary);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:24px;width:100%;box-sizing:border-box;">
+              <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px;">
+                <span style="font-size:0.85rem;font-weight:600">Lundi — Vendredi</span>
+                <span style="font-size:0.85rem;color:var(--accent);font-weight:600">9h00 — 18h00</span>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-bottom:10px;gap:10px;">
+                <span style="font-size:0.85rem;font-weight:600">Samedi</span>
+                <span style="font-size:0.85rem;color:var(--accent);font-weight:600">9h00 — 13h00</span>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;">
+                <span style="font-size:0.85rem;font-weight:600">Dimanche</span>
+                <span style="font-size:0.85rem;color:#ff4444;font-weight:600">Fermé</span>
+              </div>
+            </div>
+
+            <!-- Social -->
+            <div style="margin-top:24px">
+              <div style="font-size:0.85rem;font-weight:600;margin-bottom:12px;color:var(--gray-light)">Suivez-nous
+              </div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <a href="https://www.facebook.com/profile.php?id=61570772911684" class="social-btn"><i
+                    class="fab fa-facebook-f"></i></a>
+                <a href="https://www.tiktok.com/@codeur.x1?_r=1&_t=ZS-95mpoXJuXHV" class="social-btn"><i
+                    class="fab fa-tiktok"></i></a>
+                <a href="https://www.instagram.com/codeurxofficiel?igsh=aXc1eXVkdDEwazN4" class="social-btn"><i
+                    class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hidden Iframe for silent submission -->
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+        <!-- Right: Contact Form -->
+        <div class="reveal-right">
+          <div class="contact-form-card">
+            <h3>Envoyez-nous un <span class="gradient-text">message</span></h3>
+            <p>Remplissez le formulaire ci-dessous et notre équipe vous recontactera très rapidement.</p>
+
+            <form id="contactForm" class="contact-form" action="https://formspree.io/codeurx66@gmail.com" method="POST"
+              target="hidden_iframe">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">Nom complet</label>
+                  <input type="text" id="name" name="name" placeholder="Votre nom" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Sujet de votre message</label>
+                <div class="subject-options">
+                  <div class="subject-opt selected" data-value="web">
+                    <i class="fas fa-globe"></i>
+                    <span>Web</span>
+                  </div>
+                  <div class="subject-opt" data-value="mobile">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Mobile</span>
+                  </div>
+                  <div class="subject-opt" data-value="design">
+                    <i class="fas fa-palette"></i>
+                    <span>Design</span>
+                  </div>
+                  <div class="subject-opt" data-value="iot">
+                    <i class="fas fa-microchip"></i>
+                    <span>IOT</span>
+                  </div>
+                  <div class="subject-opt" data-value="other">
+                    <i class="fas fa-ellipsis-h"></i>
+                    <span>Autre</span>
+                  </div>
+                </div>
+                <input type="hidden" id="subject" name="subject" value="web">
+              </div>
+
+              <div class="form-group">
+                <label for="message">Votre message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Comment pouvons-nous vous aider ?"
+                  required></textarea>
+              </div>
+
+              <div class="form-submit-area">
+                <button type="submit" class="btn btn-primary">
+                  <i class="fas fa-paper-plane"></i> Envoyer le message
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SUCCESS POPUP -->
+  <div class="success-popup" id="successPopup">
+    <div class="success-card">
+      <div class="success-icon"><i class="fas fa-check"></i></div>
+      <h3>Message Envoyé !</h3>
+      <p>Merci pour votre message. Notre équipe l'a bien reçu et vous répondra dans les <strong>24 heures</strong>
+        ouvrables.</p>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a href="https://wa.me/243970037759" target="_blank" class="btn btn-whatsapp" style="justify-content:center"
+          id="waConfirmBtn">
+          <i class="fab fa-whatsapp"></i> Confirmer sur WhatsApp
+        </a>
+        <button onclick="document.getElementById('successPopup').classList.remove('show')" class="btn btn-secondary"
+          style="justify-content:center">
+          Fermer
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/243970037759" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="tooltip">Contactez-nous sur WhatsApp</span>
+  </a>
+
+  <!-- Scroll to top -->
+  <button class="scroll-top" id="scrollTop" aria-label="Retour en haut">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <div class="toast-content">
+      <div class="toast-icon"><i class="fas fa-check"></i></div>
+      <div class="toast-text">
+        <h5>Succès</h5>
+        <p>Message envoyé avec succès</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

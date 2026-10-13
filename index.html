@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta content="Codeur X" name="keywords">
+  <meta name="description"
+    content="Groupe de développeurs informatiques professionnels. Sites web, applications mobiles, UI/UX design et solutions digitales." />
+  <title>CODEUR X — Votre vision, notre code | Solutions Digitales</title>
+
+  <link href="img/WhatsApp Image 2026-03-25 at 14.32.51.jpeg" rel="icon">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" />
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ---- HERO ---- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--primary);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(14, 154, 152, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 80% 80%, rgba(20, 184, 200, 0.08) 0%, transparent 50%);
+      opacity: 1;
+    }
+
+    .hero-overlay {
+      display: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      padding: var(--nav-height) 0 0;
+      min-height: 100vh;
+    }
+
+    .hero-text {
+      animation: fadeInLeft 1s ease both;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 18px;
+      background: rgba(14, 154, 152, 0.1);
+      border: 1px solid var(--border-accent);
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--teal);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero-badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #25D366;
+      animation: blink 1.5s ease infinite;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1.1;
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+    }
+
+    .hero-title .brand {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+      font-size: 1.15em;
+    }
+
+    .hero-typed {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-mono);
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      color: var(--teal);
+      margin-bottom: 28px;
+      height: 28px;
+    }
+
+    .hero-typed .prefix {
+      color: var(--text-muted);
+    }
+
+    .hero-typed .cursor {
+      width: 2px;
+      height: 22px;
+      background: var(--accent2);
+      border-radius: 2px;
+      animation: blink 1s infinite;
+      flex-shrink: 0;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--text-body);
+      line-height: 1.8;
+      margin-bottom: 40px;
+      max-width: 520px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 50px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      gap: 32px;
+      padding-top: 30px;
+    }
+
+    .hero-stat-item {
+      text-align: left;
+    }
+
+    .hero-stat-num {
+      font-size: 1.8rem;
+      font-weight: 900;
+      font-family: var(--font-mono);
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .hero-stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Hero Visual */
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: fadeInRight 1s ease both 0.3s;
+      position: relative;
+    }
+
+    .code-window {
+      background: #0d1117;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      overflow: hidden;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 30px 80px rgba(11, 42, 91, 0.25), 0 0 0 1px rgba(11, 42, 91, 0.05);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .code-window-header {
+      padding: 14px 20px;
+      background: #161b22;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .code-dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .code-dot.red {
+      background: #ff5f57;
+    }
+
+    .code-dot.yellow {
+      background: #febc2e;
+    }
+
+    .code-dot.green {
+      background: #28c840;
+    }
+
+    .code-title {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--gray);
+      margin-left: 10px;
+    }
+
+    .code-body {
+      padding: 24px 20px;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      line-height: 1.8;
+      overflow-x: auto;
+    }
+
+    .code-line {
+      display: flex;
+      gap: 16px;
+    }
+
+    .line-num {
+      color: #555;
+      min-width: 16px;
+      text-align: right;
+      user-select: none;
+    }
+
+    .code-kw {
+      color: #ff7b72;
+    }
+
+    .code-fn {
+      color: #79c0ff;
+    }
+
+    .code-str {
+      color: #a5d6ff;
+    }
+
+    .code-val {
+      color: #ffa657;
+    }
+
+    .code-cm {
+      color: #8b949e;
+    }
+
+    .code-br {
+      color: #79c0ff;
+    }
+
+    /* Floating tags */
+    .floating-tags {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .ftag {
+      position: absolute;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.2) 100%);
+      backdrop-filter: blur(24px) saturate(210%);
+      -webkit-backdrop-filter: blur(24px) saturate(210%);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      border-radius: 14px;
+      padding: 10px 16px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      box-shadow: 0 8px 24px rgba(11, 42, 91, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.95);
+      transition: var(--transition);
+    }
+
+    .ftag:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.35) 100%);
+      border-color: rgba(20, 184, 200, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .ftag i {
+      color: var(--accent);
+    }
+
+    .ftag:nth-child(1) {
+      top: 15%;
+      right: -20px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .ftag:nth-child(2) {
+      bottom: 25%;
+      left: -20px;
+      animation: float 4s ease-in-out infinite 1s;
+    }
+
+    .ftag:nth-child(3) {
+      top: 60%;
+      right: -10px;
+      animation: float 3.5s ease-in-out infinite 0.5s;
+    }
+
+    /* ---- ABOUT PREVIEW ---- */
+    .about-preview {
+      background: var(--primary);
+    }
+
+    .about-preview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-image-wrap {
+      position: relative;
+    }
+
+    .about-image-main {
+      width: 100%;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .about-image-main img {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+    }
+
+    .about-image-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.2) 100%);
+      backdrop-filter: blur(28px) saturate(210%);
+      -webkit-backdrop-filter: blur(28px) saturate(210%);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      box-shadow: 0 12px 36px rgba(11, 42, 91, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.95);
+    }
+
+    .about-image-badge .num {
+      font-size: 2.5rem;
+      font-weight: 900;
+      font-family: var(--font-mono);
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+
+    .about-image-badge .label {
+      font-size: 0.78rem;
+      color: var(--text-body);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 30px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.15) 100%);
+      backdrop-filter: blur(28px) saturate(210%);
+      -webkit-backdrop-filter: blur(28px) saturate(210%);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(11, 42, 91, 0.05), inset 0 1px 2px rgba(255, 255, 255, 0.95);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.95), transparent);
+    }
+
+    .feature-item:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.25) 100%);
+      border-color: rgba(20, 184, 200, 0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 36px rgba(14, 154, 152, 0.14), inset 0 1px 2px rgba(255, 255, 255, 1);
+    }
+
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.28);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      box-shadow: 0 4px 12px rgba(11, 42, 91, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--teal);
+      font-size: 0.95rem;
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .feature-item:hover .feature-icon {
+      background: var(--gradient);
+      color: var(--white);
+      border-color: transparent;
+      transform: scale(1.08) rotate(4deg);
+    }
+
+    .feature-item h5 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 3px;
+    }
+
+    .feature-item p {
+      font-size: 0.78rem;
+      color: var(--text-body);
+    }
+
+    /* ---- SERVICES PREVIEW ---- */
+    .service-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.14) 100%);
+      backdrop-filter: blur(28px) saturate(210%);
+      -webkit-backdrop-filter: blur(28px) saturate(210%);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(11, 42, 91, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.95);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .service-card:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.25) 100%);
+      border-color: rgba(20, 184, 200, 0.5);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(14, 154, 152, 0.16), inset 0 1px 2px rgba(255, 255, 255, 1);
+    }
+
+    .service-card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      transition: var(--transition-slow);
+    }
+
+    .service-card:hover .service-card-img {
+      transform: scale(1.05);
+    }
+
+    .service-card-img-wrap {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .service-card-img-wrap .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(11, 42, 91, 0.25));
+    }
+
+    .service-card-body {
+      padding: 24px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.16) 100%);
+      backdrop-filter: blur(28px) saturate(210%);
+      -webkit-backdrop-filter: blur(28px) saturate(210%);
+      border-top: 1px solid rgba(255, 255, 255, 0.75);
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.95);
+      position: relative;
+      z-index: 1;
+      transition: var(--transition);
+    }
+
+    .service-card:hover .service-card-body {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.25) 100%);
+    }
+
+    .service-icon-wrap {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.28);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      box-shadow: 0 4px 14px rgba(11, 42, 91, 0.05), inset 0 1px 2px rgba(255, 255, 255, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--teal);
+      margin-bottom: 16px;
+      transition: var(--transition);
+    }
+
+    .service-card:hover .service-icon-wrap {
+      background: var(--gradient);
+      border-color: transparent;
+      color: var(--white);
+      transform: rotate(8deg) scale(1.1);
+      box-shadow: 0 8px 20px rgba(14, 154, 152, 0.35);
+    }
+
+    .service-card-body h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .service-card-body p {
+      font-size: 0.88rem;
+      color: var(--text-body);
+      line-height: 1.7;
+    }
+
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 16px;
+      transition: var(--transition);
+    }
+
+    .service-link:hover {
+      gap: 12px;
+    }
+
+    /* ---- TECHNOLOGIES ---- */
+    .tech-section {
+      background: var(--primary);
+    }
+
+    .tech-marquee-wrap {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .tech-marquee-wrap::before,
+    .tech-marquee-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 150px;
+      z-index: 2;
+    }
+
+    .tech-marquee-wrap::before {
+      left: 0;
+      background: linear-gradient(to right, #F4FAFA, transparent);
+    }
+
+    .tech-marquee-wrap::after {
+      right: 0;
+      background: linear-gradient(to left, #F4FAFA, transparent);
+    }
+
+    .tech-marquee {
+      display: flex;
+      gap: 20px;
+      animation: marquee 20s linear infinite;
+      width: max-content;
+    }
+
+    .tech-marquee.reverse {
+      animation: marqueeReverse 25s linear infinite;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @keyframes marqueeReverse {
+      from {
+        transform: translateX(-50%);
+      }
+
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    .tech-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 22px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.18) 100%);
+      backdrop-filter: blur(24px) saturate(210%);
+      -webkit-backdrop-filter: blur(24px) saturate(210%);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: 50px;
+      white-space: nowrap;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--navy);
+      box-shadow: 0 4px 14px rgba(11, 42, 91, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.95);
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+
+    .tech-item:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 100%);
+      border-color: rgba(20, 184, 200, 0.5);
+      color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(14, 154, 152, 0.14);
+    }
+
+    .tech-item i {
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+
+    /* ---- PROJECTS PREVIEW ---- */
+    .project-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.14) 100%);
+      backdrop-filter: blur(28px) saturate(210%);
+      -webkit-backdrop-filter: blur(28px) saturate(210%);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(11, 42, 91, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.95);
+      transition: var(--transition);
+    }
+
+    .project-card:hover {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.25) 100%);
+      border-color: rgba(20, 184, 200, 0.5);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(14, 154, 152, 0.16), inset 0 1px 2px rgba(255, 255, 255, 1);
+    }
+
+    .project-img-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: var(--transition-slow);
+    }
+
+    .project-card:hover .project-img {
+      transform: scale(1.08);
+    }
+
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(11, 42, 91, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .project-card:hover .project-overlay {
+      opacity: 1;
+    }
+
+    .project-action {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--accent);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      transition: var(--transition);
+      transform: translateY(10px);
+    }
+
+    .project-card:hover .project-action {
+      transform: translateY(0);
+    }
+
+    .project-action:hover {
+      transform: scale(1.1) !important;
+    }
+
+    .project-body {
+      padding: 22px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.16) 100%);
+      backdrop-filter: blur(28px) saturate(210%);
+      -webkit-backdrop-filter: blur(28px) saturate(210%);
+      border-top: 1px solid rgba(255, 255, 255, 0.75);
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.95);
+      position: relative;
+      z-index: 1;
+      transition: var(--transition);
+    }
+
+    .project-card:hover .project-body {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0.25) 100%);
+    }
+
+    .project-cat {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .project-body h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .project-body p {
+      font-size: 0.85rem;
+      color: var(--text-body);
+      line-height: 1.6;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+
+    .project-tag {
+      padding: 4px 10px;
+      background: rgba(14, 154, 152, 0.1);
+      border: 1px solid var(--border-accent);
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--teal);
+    }
+
+    /* ---- TESTIMONIALS ---- */
+    .testimonials-section {
+      background: var(--primary);
+    }
+
+    /* ---- CTA ---- */
+    .cta-section {
+      position: relative;
+      overflow: hidden;
+      background: var(--primary);
+    }
+
+    .cta-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 80% at 50% 50%, rgba(14, 154, 152, 0.1) 0%, transparent 70%);
+    }
+
+    .cta-inner {
+      position: relative;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 50px 48px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.18) 100%);
+      backdrop-filter: blur(32px) saturate(220%);
+      -webkit-backdrop-filter: blur(32px) saturate(220%);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      border-radius: 28px;
+      box-shadow: 0 12px 40px rgba(11, 42, 91, 0.07), inset 0 1px 2px rgba(255, 255, 255, 0.95);
+      overflow: hidden;
+    }
+
+    .cta-inner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.98), transparent);
+    }
+
+    .cta-inner h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+
+    .cta-inner p {
+      color: var(--text-body);
+      font-size: 1.05rem;
+      margin-bottom: 40px;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    /* ---- RESPONSIVE HERO ---- */
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        padding-top: calc(var(--nav-height) + 20px);
+        padding-bottom: 60px;
+        text-align: center;
+        min-height: auto;
+      }
+
+      .hero-desc {
+        margin: 0 auto 40px;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-stats {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .hero-stat-item {
+        text-align: center;
+      }
+
+      .ftag {
+        display: none;
+      }
+
+      .floating-tags {
+        display: none;
+      }
+
+      .code-window {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .about-preview-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+      }
+
+      .about-image-badge {
+        right: 10px;
+        bottom: 10px;
+      }
+
+      .about-features {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-title {
+        font-size: 2.2rem;
+      }
+
+      .hero-desc {
+        font-size: 0.95rem;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        width: 100%;
+        padding-top: 24px;
+      }
+
+      .hero-stat-num {
+        font-size: 1.35rem;
+      }
+
+      .hero-stat-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.2px;
+        line-height: 1.25;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Page Loader -->
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-3d-wrapper">
+      <div class="loader-3d-aura"></div>
+      <div class="loader-3d-logo">
+        <img src="img/cx-4.png" alt="Logo CODEUR X" class="loader-3d-img" />
+        <div class="loader-3d-shine"></div>
+      </div>
+      <div class="loader-3d-shadow"></div>
+    </div>
+    <div class="loader-bar">
+      <div class="loader-progress"></div>
+    </div>
+  </div>
+
+  <!-- Nav Overlay -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="CODEUR X Accueil">
+        <span class="logo-text">CODEUR <span class="logo-x">X</span></span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link active">Accueil</a></li>
+        <li><a href="about.html" class="nav-link">À Propos</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+        <li><a href="contact.html" class="nav-cta">Nous Contacter</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="particles-bg"></div>
+
+    <div class="hero-content container">
+      <div class="hero-inner">
+        <!-- Text -->
+        <div class="hero-text">
+          <h1 class="hero-title">
+            Nous Développons
+            <span class="brand keyword-teal">le Futur Digital</span>
+          </h1>
+          <div class="hero-typed">
+            <span class="prefix">&gt; </span>
+            <span id="typedText"
+              data-texts="Développement Web|Applications Mobiles|Optimisation SEO|UI/UX Design|Systèmes Embarqués|Réseaux Informatique|API & Backend"></span>
+            <span class="cursor"></span>
+          </div>
+          <p class="hero-desc">
+            <strong style="color:var(--navy);">Votre vision, notre code.</strong> CODEUR X est un groupe de
+            développeurs et concepteurs digitaux passionnés. Nous donnons vie à vos idées avec des solutions
+            performantes, sécurisées et sur mesure.
+          </p>
+          <div class="hero-actions">
+            <a href="services.html" class="btn btn-primary">
+              <i class="fas fa-rocket"></i> Voir nos services
+            </a>
+            <a href="contact.html" class="btn btn-secondary">
+              <i class="fas fa-paper-plane"></i> Nous contacter
+            </a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat-item">
+              <div class="hero-stat-num">150+</div>
+              <div class="hero-stat-label">Projets Livrés</div>
+            </div>
+            <div class="hero-stat-item">
+              <div class="hero-stat-num">97%</div>
+              <div class="hero-stat-label">Satisfaction Client</div>
+            </div>
+            <div class="hero-stat-item">
+              <div class="hero-stat-num">2+</div>
+              <div class="hero-stat-label">Années D'expérience</div>
+            </div>
+          </div>
+        </div>
+        <!-- Visual with Brand Graphic Accent -->
+        <div class="hero-visual" style="position:relative;display:flex;justify-content:center;align-items:center;">
+          <!-- Cercles décoratifs superposés de la charte graphique -->
+          <div style="position:absolute;top:-20px;right:25px;pointer-events:none;z-index:3;">
+            <div
+              style="width:52px;height:52px;border-radius:50%;background:var(--teal);box-shadow:0 6px 20px var(--accent-glow);">
+            </div>
+            <div
+              style="width:36px;height:36px;border-radius:50%;background:var(--cyan);position:absolute;bottom:-12px;right:-12px;box-shadow:0 6px 20px var(--accent2-glow);">
+            </div>
+          </div>
+          <div>
+            <img src="img/cx-4.png" alt="Logo CODEUR X">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS SECTION -->
+  <section class="stats-section" style="position:relative;overflow:hidden;padding:70px 0;">
+    <!-- Ambient color blobs pour l'effet verre glacé iOS transparent -->
+    <div style="position:absolute;inset:0;pointer-events:none;z-index:0;">
+      <div
+        style="position:absolute;top:50%;left:20%;transform:translate(-50%,-50%);width:320px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(14,154,152,0.32) 0%,transparent 70%);filter:blur(40px);">
+      </div>
+      <div
+        style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:320px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(20,184,200,0.32) 0%,transparent 70%);filter:blur(40px);">
+      </div>
+      <div
+        style="position:absolute;top:50%;left:80%;transform:translate(-50%,-50%);width:320px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(14,154,152,0.3) 0%,transparent 70%);filter:blur(40px);">
+      </div>
+    </div>
+    <div class="container" style="position:relative;z-index:1;">
+      <div class="stats-grid">
+        <div class="stat-item reveal">
+          <div class="stat-number"><span class="stat-count" data-target="150" data-suffix="+">0+</span></div>
+          <div class="stat-label">Projets Livrés</div>
+        </div>
+        <div class="stat-item reveal delay-1">
+          <div class="stat-number"><span class="stat-count" data-target="97" data-suffix="%">0%</span></div>
+          <div class="stat-label">Satisfaction Client</div>
+        </div>
+        <div class="stat-item reveal delay-2">
+          <div class="stat-number"><span class="stat-count" data-target="2" data-suffix="+">0+</span></div>
+          <div class="stat-label">Années D'expérience</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ABOUT PREVIEW -->
+  <section class="about-preview">
+    <div class="container">
+      <div class="about-preview-grid">
+        <div class="about-image-wrap reveal-left">
+          <div class="about-image-main">
+            <img src="img/Equipe.jpeg" alt="Équipe CODEUR X" loading="lazy" />
+          </div>
+          <div class="about-image-badge">
+            <div class="num">2+</div>
+            <div class="label">Ans d'expertise</div>
+          </div>
+        </div>
+        <div class="reveal-right">
+          <div class="section-badge"><i class="fas fa-users"></i> Notre Équipe</div>
+          <h2 style="font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;margin-bottom:16px;line-height:1.2">
+            Un groupe de passionnés qui <span class="gradient-text">transforment vos idées</span>
+          </h2>
+          <p style="color:var(--gray);line-height:1.8;margin-bottom:30px">
+            Fondé par des ingénieurs et développeurs passionnés, CODEUR X réunit les meilleures compétences du domaine
+            numérique pour créer des solutions qui font la différence.
+          </p>
+          <div class="about-features">
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-code"></i></div>
+              <div>
+                <h5>Code de Qualité</h5>
+                <p>Standards professionnels</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+              <div>
+                <h5>Livraison Rapide</h5>
+                <p>Dans les délais fixés</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+              <div>
+                <h5>Sécurisé</h5>
+                <p>Données protégées</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-headset"></i></div>
+              <div>
+                <h5>Support 24/7</h5>
+                <p>Toujours disponible</p>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:30px">
+            <a href="about.html" class="btn btn-primary"><i class="fas fa-arrow-right"></i> En savoir plus</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNOLOGIES -->
+  <section class="tech-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Technologies que nous <span class="gradient-text">maîtrisons</span></h2>
+        <p>Nous utilisons les meilleures technologies du marché pour construire vos projets</p>
+      </div>
+    </div>
+    <div class="tech-marquee-wrap" style="margin-bottom:20px">
+      <div class="tech-marquee">
+        <div class="tech-item"><i class="fab fa-html5" style="color:#e34f26"></i> HTML5</div>
+        <div class="tech-item"><i class="fab fa-css3-alt" style="color:#1572b6"></i> CSS3</div>
+        <div class="tech-item"><i class="fab fa-js" style="color:#f7df1e"></i> JavaScript</div>
+        <div class="tech-item"><i class="fab fa-react" style="color:#61dafb"></i> React</div>
+        <div class="tech-item"><i class="fab fa-vuejs" style="color:#42b883"></i> Vue.js</div>
+        <div class="tech-item"><i class="fab fa-node-js" style="color:#68a063"></i> Node.js</div>
+        <div class="tech-item"><i class="fab fa-python" style="color:#3776ab"></i> Python</div>
+        <div class="tech-item"><i class="fab fa-php" style="color:#777bb4"></i> PHP</div>
+        <div class="tech-item"><i class="fab fa-laravel" style="color:#ff2d20"></i> Laravel</div>
+        <div class="tech-item"><i class="fas fa-database" style="color:#4479a1"></i> MySQL</div>
+        <div class="tech-item">
+          <img src="img/Pc.png" alt="Packet Tracer" style="width:24px; height:24px; margin-right:8px;">
+          Packer Tracer
+        </div>
+
+        <div class="tech-item">
+          <img src="img/gns.png" alt="GNS3" style="width:24px; height:24px; margin-right:8px;">
+          GNS 3
+        </div>
+        <!-- Duplicate for infinite scroll -->
+        <div class="tech-item"><i class="fab fa-html5" style="color:#e34f26"></i> HTML5</div>
+        <div class="tech-item"><i class="fab fa-css3-alt" style="color:#1572b6"></i> CSS3</div>
+        <div class="tech-item"><i class="fab fa-js" style="color:#f7df1e"></i> JavaScript</div>
+        <div class="tech-item"><i class="fab fa-react" style="color:#61dafb"></i> React</div>
+        <div class="tech-item"><i class="fab fa-vuejs" style="color:#42b883"></i> Vue.js</div>
+        <div class="tech-item"><i class="fab fa-node-js" style="color:#68a063"></i> Node.js</div>
+        <div class="tech-item"><i class="fab fa-python" style="color:#3776ab"></i> Python</div>
+        <div class="tech-item"><i class="fab fa-php" style="color:#777bb4"></i> PHP</div>
+        <div class="tech-item"><i class="fab fa-laravel" style="color:#ff2d20"></i> Laravel</div>
+        <div class="tech-item"><i class="fas fa-database" style="color:#4479a1"></i> MySQL</div>
+      </div>
+    </div>
+    <div class="tech-marquee-wrap">
+      <div class="tech-marquee reverse">
+        <div class="tech-item"><i class="fab fa-android" style="color:#3ddc84"></i> Android</div>
+        <div class="tech-item"><i class="fab fa-apple" style="color:#999"></i> iOS</div>
+        <div class="tech-item"><i class="fab fa-docker" style="color:#2496ed"></i> Docker</div>
+        <div class="tech-item"><i class="fab fa-aws" style="color:#ff9900"></i> AWS</div>
+        <div class="tech-item"><i class="fab fa-git-alt" style="color:#f05032"></i> Git</div>
+        <div class="tech-item"><i class="fab fa-figma" style="color:#f24e1e"></i> Figma</div>
+        <div class="tech-item"><i class="fas fa-mobile-alt" style="color:#61dafb"></i> React Native</div>
+        <div class="tech-item"><i class="fab fa-wordpress" style="color:#21759b"></i> WordPress</div>
+        <div class="tech-item"><i class="fas fa-fire" style="color:#ffca28"></i> Firebase</div>
+        <div class="tech-item"><i class="fas fa-server" style="color:#4a90d9"></i> API REST</div>
+        <!-- Duplicate -->
+        <div class="tech-item"><i class="fab fa-android" style="color:#3ddc84"></i> Android</div>
+        <div class="tech-item"><i class="fab fa-apple" style="color:#999"></i> iOS</div>
+        <div class="tech-item"><i class="fab fa-docker" style="color:#2496ed"></i> Docker</div>
+        <div class="tech-item"><i class="fab fa-aws" style="color:#ff9900"></i> AWS</div>
+        <div class="tech-item"><i class="fab fa-git-alt" style="color:#f05032"></i> Git</div>
+        <div class="tech-item"><i class="fab fa-figma" style="color:#f24e1e"></i> Figma</div>
+        <div class="tech-item"><i class="fas fa-mobile-alt" style="color:#61dafb"></i> React Native</div>
+        <div class="tech-item"><i class="fab fa-wordpress" style="color:#21759b"></i> WordPress</div>
+        <div class="tech-item"><i class="fas fa-fire" style="color:#ffca28"></i> Firebase</div>
+        <div class="tech-item"><i class="fas fa-server" style="color:#4a90d9"></i> API REST</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES PREVIEW -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge"><i class="fas fa-layer-group"></i> Nos Services</div>
+        <h2>Ce que nous <span class="gradient-text">offrons</span></h2>
+        <p>Des solutions complètes pour répondre à tous vos besoins digitaux</p>
+      </div>
+      <div class="grid-3">
+        <div class="service-card reveal delay-1">
+          <div class="service-card-img-wrap">
+            <img class="service-card-img" src="img/Site.jpg" alt="Création de sites web" loading="lazy" />
+            <div class="overlay"></div>
+          </div>
+          <div class="service-card-body">
+            <div class="service-icon-wrap"><i class="fas fa-globe"></i></div>
+            <h3>Création de Sites Web</h3>
+            <p>Sites vitrines, e-commerce, portails web modernes et performants adaptés à tous les écrans.</p>
+            <a href="services.html" class="service-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="service-card reveal delay-2">
+          <div class="service-card-img-wrap">
+            <img class="service-card-img" src="img/App.jpg" alt="Applications mobiles" loading="lazy" />
+            <div class="overlay"></div>
+          </div>
+          <div class="service-card-body">
+            <div class="service-icon-wrap"><i class="fas fa-mobile-alt"></i></div>
+            <h3>Applications Mobiles</h3>
+            <p>Développement Android & iOS natif et cross-platform avec React Native et Flutter.</p>
+            <a href="services.html" class="service-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="service-card reveal delay-3">
+          <div class="service-card-img-wrap">
+            <img class="service-card-img" src="img/Ux.jpg" alt="UI/UX Design" loading="lazy" />
+            <div class="overlay"></div>
+          </div>
+          <div class="service-card-body">
+            <div class="service-icon-wrap"><i class="fas fa-palette"></i></div>
+            <h3>UI/UX Design</h3>
+            <p>Interfaces intuitives et expériences utilisateur mémorables qui convertissent et fidélisent.</p>
+            <a href="services.html" class="service-link">En savoir plus <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:40px">
+        <a href="services.html" class="btn btn-outline"><i class="fas fa-th-large"></i> Voir tous les services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECENT PROJECTS -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge"><i class="fas fa-briefcase"></i> Portfolio</div>
+        <h2>Projets <span class="gradient-text">récents</span></h2>
+        <p>Quelques-unes de nos réalisations les plus récentes</p>
+      </div>
+      <div class="grid-3">
+        <!-- Projet 1: Prédiction du Paludisme -->
+        <div class="project-card reveal delay-1">
+          <div class="project-img-wrap">
+            <img class="project-img" src="img/malaria .jpeg" alt="Prédiction du Paludisme" loading="lazy" />
+            <div class="project-overlay">
+              <a href="portfolio.html" class="project-action"><i class="fas fa-eye"></i></a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-cat">DASHBOARD MÉDICAL</div>
+            <h3>Diagnosis of malaria</h3>
+            <p>Plateforme Médicale d'Analyse et de Suivi Clinique du Paludisme</p>
+          </div>
+        </div>
+
+        <!-- Projet 2: Smart Agriculture -->
+        <div class="project-card reveal delay-2">
+          <div class="project-img-wrap">
+            <img class="project-img" src="img/IMG-20260310-WA0003.jpg" alt="Smart Agriculture" loading="lazy" />
+            <div class="project-overlay">
+              <a href="portfolio.html" class="project-action"><i class="fas fa-eye"></i></a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-cat">DASHBOARD</div>
+            <h3>Smart Agriculture</h3>
+            <p>Système de Gestion de Production Agricole</p>
+          </div>
+        </div>
+
+        <div class="project-card reveal delay-2">
+          <div class="project-img-wrap">
+            <img class="project-img" src="img/CONGO T.jpeg" alt="Smart Agriculture" loading="lazy" />
+            <div class="project-overlay">
+              <a href="portfolio.html" class="project-action"><i class="fas fa-eye"></i></a>
+            </div>
+          </div>
+          <div class="project-body">
+            <div class="project-cat">PLATEFORME WEB</div>
+            <h3>Congo tourisme</h3>
+            <p>Plateforme de guide Touristique du Congo</p>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:40px">
+        <a href="portfolio.html" class="btn btn-outline"><i class="fas fa-folder-open"></i> Voir tous les projets</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge"><i class="fas fa-star"></i> Témoignages</div>
+        <h2>Ce que disent nos <span class="gradient-text">clients</span></h2>
+        <p>La satisfaction de nos clients est notre plus grande fierté</p>
+      </div>
+      <div class="grid-3">
+        <div class="testimonial-card reveal delay-1">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"CODEUR X a transformé notre vision en une réalité digitale époustouflante.
+            Professionnalisme, réactivité et créativité au rendez-vous !"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AM</div>
+            <div class="testimonial-info">
+              <h5>Ahmed Mousa</h5>
+              <span>CEO, TechStartup Alger</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal delay-2">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Notre application mobile a été livrée en avance sur le planning, avec une qualité
+            qui dépasse nos attentes. Je recommande vivement !"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SB</div>
+            <div class="testimonial-info">
+              <h5>Sarah Benali</h5>
+              <span>Fondatrice, ShopOnline.ma</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal delay-3">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Excellent travail sur notre refonte complète. L'équipe CODEUR X a su comprendre
+            nos besoins et proposer des solutions innovantes."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">KT</div>
+            <div class="testimonial-info">
+              <h5>Karim Tazi</h5>
+              <span>Directeur Digital, GroupeTech</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="cta-section">
+    <div class="cta-bg"></div>
+    <div class="container">
+      <div class="cta-inner reveal">
+        <div class="section-badge" style="justify-content:center"><i class="fas fa-rocket"></i> Démarrons ensemble</div>
+        <h2>Prêt à démarrer votre <span class="gradient-text">projet digital</span> ?</h2>
+        <p>Contactez-nous aujourd'hui et obtenez un devis gratuit sous 24h. Notre équipe est prête à concrétiser vos
+          ambitions numériques.</p>
+        <div class="cta-actions">
+          <a href="contact.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Demander un devis</a>
+          <a href="https://wa.me/243970037759" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i>
+            Discuter sur WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/243970037759" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="tooltip">Contactez-nous sur WhatsApp</span>
+  </a>
+
+  <!-- Scroll to top -->
+  <button class="scroll-top" id="scrollTop" aria-label="Retour en haut">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <div class="toast-content">
+      <div class="toast-icon"><i class="fas fa-check"></i></div>
+      <div class="toast-text">
+        <h5>Succès</h5>
+        <p>Message envoyé avec succès</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

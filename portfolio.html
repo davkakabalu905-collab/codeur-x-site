@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta content="Codeur X" name="keywords">
+  <meta name="description"
+    content="Groupe de développeurs informatiques professionnels. Sites web, applications mobiles, UI/UX design et solutions digitales." />
+  <title>Portfolio — CODEUR X | Votre vision, notre code</title>
+
+  <link href="img/WhatsApp Image 2026-03-25 at 14.32.51.jpeg" rel="icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ---- PORTFOLIO CARD ---- */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .p-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: var(--glass-shadow);
+      transition: var(--transition);
+    }
+
+    .p-card:hover {
+      background: var(--glass-bg-hover);
+      border-color: var(--glass-border-hover);
+      transform: translateY(-8px);
+      box-shadow: var(--glass-shadow-hover);
+    }
+
+    .p-card-img-wrap {
+      position: relative;
+      overflow: hidden;
+      height: 220px;
+    }
+
+    .p-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .p-card:hover .p-card-img {
+      transform: scale(1.12);
+    }
+
+    .p-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      opacity: 0;
+      transition: var(--transition);
+      backdrop-filter: blur(4px);
+    }
+
+    .p-card:hover .p-card-overlay {
+      opacity: 1;
+    }
+
+    .p-overlay-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: var(--white);
+      transition: var(--transition);
+      transform: scale(0.8) translateY(10px);
+    }
+
+    .p-card:hover .p-overlay-btn {
+      transform: scale(1) translateY(0);
+    }
+
+    .p-overlay-btn.view {
+      background: var(--accent);
+      transition-delay: 0.05s;
+    }
+
+    .p-overlay-btn.link {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      transition-delay: 0.1s;
+    }
+
+    .p-overlay-btn:hover {
+      transform: scale(1.1) !important;
+    }
+
+    .p-card-body {
+      padding: 20px 22px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.16) 100%);
+      backdrop-filter: blur(28px) saturate(210%);
+      -webkit-backdrop-filter: blur(28px) saturate(210%);
+      border-top: 1px solid rgba(255, 255, 255, 0.75);
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.95);
+      position: relative;
+      z-index: 1;
+      transition: var(--transition);
+    }
+
+    .p-card:hover .p-card-body {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.58) 0%, rgba(255, 255, 255, 0.28) 100%);
+    }
+
+    .p-cat {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent2);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+
+    .p-card-body h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      transition: var(--transition);
+    }
+
+    .p-card:hover h3 {
+      color: var(--accent);
+    }
+
+    .p-card-body p {
+      font-size: 0.82rem;
+      color: var(--gray);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .p-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .p-tag {
+      padding: 3px 10px;
+      background: rgba(14, 154, 152, 0.15);
+      border: 1px solid var(--border-accent);
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--cyan);
+    }
+
+    .p-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 22px;
+    }
+
+    .p-client {
+      font-size: 0.78rem;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .p-client i {
+      color: var(--cyan);
+    }
+
+    .p-year {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--gray);
+    }
+
+    /* ---- MODAL PROJECT ---- */
+    .modal-project-img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 24px;
+    }
+
+    .modal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0;
+    }
+
+    .modal-tag {
+      padding: 5px 14px;
+      background: rgba(14, 154, 152, 0.15);
+      border: 1px solid var(--border-accent);
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--cyan);
+    }
+
+    .modal-meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 20px 0;
+      padding: 20px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.18) 100%);
+      backdrop-filter: blur(24px) saturate(210%);
+      -webkit-backdrop-filter: blur(24px) saturate(210%);
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      box-shadow: 0 4px 16px rgba(11, 42, 91, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.95);
+    }
+
+    .modal-meta-item {
+      text-align: center;
+    }
+
+    .modal-meta-item .label {
+      font-size: 0.72rem;
+      color: var(--gray);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+
+    .modal-meta-item .value {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-meta {
+        grid-template-columns: 1fr;
+        padding: 15px;
+      }
+
+      .page-header h1 {
+        font-size: 2.2rem;
+      }
+
+      .filter-tab {
+        padding: 8px 15px;
+        font-size: 0.75rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-3d-wrapper">
+      <div class="loader-3d-aura"></div>
+      <div class="loader-3d-logo">
+        <img src="img/cx-4.png" alt="Logo CODEUR X" class="loader-3d-img" />
+        <div class="loader-3d-shine"></div>
+      </div>
+      <div class="loader-3d-shadow"></div>
+    </div>
+    <div class="loader-bar">
+      <div class="loader-progress"></div>
+    </div>
+  </div>
+
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="CODEUR X Accueil">
+        <span class="logo-text">CODEUR <span class="logo-x">X</span></span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">Accueil</a></li>
+        <li><a href="about.html" class="nav-link">À Propos</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="portfolio.html" class="nav-link active">Portfolio</a></li>
+        <li><a href="contact.html" class="nav-cta">Nous Contacter</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="particles-bg"></div>
+    <!-- Cercles décoratifs de marque -->
+    <div style="position:absolute;top:25px;right:40px;pointer-events:none;opacity:0.8;">
+      <div
+        style="width:40px;height:40px;border-radius:50%;background:var(--teal);box-shadow:0 4px 15px var(--accent-glow);">
+      </div>
+      <div
+        style="width:28px;height:28px;border-radius:50%;background:var(--cyan);position:absolute;bottom:-10px;right:-10px;box-shadow:0 4px 15px var(--accent2-glow);">
+      </div>
+    </div>
+    <div class="page-header-badge"><i class="fas fa-folder-open"></i> Votre vision, notre code</div>
+    <h1>Notre Portfolio & <span class="keyword-teal">Réalisations</span></h1>
+    <p>Découvrez une sélection de nos meilleurs projets digitaux conçus sur mesure pour propulser l'activité de nos
+      partenaires.</p>
+  </div>
+
+  <!-- PORTFOLIO -->
+  <section>
+    <div class="container">
+      <!-- Filter -->
+      <div class="filter-wrapper"
+        style="display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-bottom:50px">
+        <button class="filter-tab active" data-filter="all">Tous les projets</button>
+        <button class="filter-tab" data-filter="web">Sites Web</button>
+        <button class="filter-tab" data-filter="mobile">Mobile</button>
+        <button class="filter-tab" data-filter="design">UI/UX Design</button>
+        <button class="filter-tab" data-filter="ecommerce">E-Commerce</button>
+        <button class="filter-tab" data-filter="dashboard">Dashboard</button>
+      </div>
+
+      <!-- Grid -->
+      <div class="portfolio-grid filterable-grid" id="portfolioGrid">
+
+        <!-- Project 1 -->
+        <div class="p-card reveal delay-1" data-category="dashboard" data-project="2">
+          <div class="p-card-img-wrap">
+            <img class="p-card-img" src="img/malaria .jpeg" alt="Diagnosis of malaria" loading="lazy" />
+          </div>
+          <div class="p-card-body">
+            <div class="p-cat">DASHBOARD MÉDICAL</div>
+            <h3>Diagnosis of malaria</h3>
+            <p>Plateforme Médicale d'Analyse et de Suivi Clinique du Paludisme</p>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="p-card reveal delay-2" data-category="dashboard" data-project="1">
+          <div class="p-card-img-wrap">
+            <img class="p-card-img" src="img/IMG-20260310-WA0003.jpg" alt="Smart Agriculture" loading="lazy" />
+          </div>
+          <div class="p-card-body">
+            <div class="p-cat">DASHBOARD</div>
+            <h3>Smart Agriculture</h3>
+            <p>Système de Controle de Production Agricole</p>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="p-card reveal delay-3" data-category="web" data-project="3">
+          <div class="p-card-img-wrap">
+            <img class="p-card-img" src="img/CONGO T.jpeg" alt="Congo tourisme" loading="lazy" />
+          </div>
+          <div class="p-card-body">
+            <div class="p-cat">PLATEFORME WEB</div>
+            <h3>Congo tourisme</h3>
+            <p>Plateforme de guide Touristique du Congo</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA -->
+  <section style="padding:80px 0">
+    <div class="container" style="text-align:center">
+      <div class="reveal">
+        <div class="section-badge" style="justify-content:center"><i class="fas fa-rocket"></i> Votre Projet</div>
+        <h2 style="font-size:clamp(1.8rem,4vw,3rem);font-weight:900;margin-bottom:20px">
+          Votre projet sera le <span class="gradient-text">prochain</span> !
+        </h2>
+        <p
+          style="color:var(--gray);font-size:1.05rem;margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto">
+          Rejoignez nos clients satisfaits et lancez votre projet digital avec CODEUR X.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center">
+          <a href="contact.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Démarrer mon projet</a>
+          <a href="https://wa.me/NUMERO" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i>
+            WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/243970037759" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="tooltip">Contactez-nous sur WhatsApp</span>
+  </a>
+
+  <!-- Scroll to top -->
+  <button class="scroll-top" id="scrollTop" aria-label="Retour en haut">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <div class="toast-content">
+      <div class="toast-icon"><i class="fas fa-check"></i></div>
+      <div class="toast-text">
+        <h5>Succès</h5>
+        <p>Message envoyé avec succès</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

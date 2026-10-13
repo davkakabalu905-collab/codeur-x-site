@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta content="Codeur X" name="keywords">
+  <meta name="description"
+    content="Groupe de développeurs informatiques professionnels. Sites web, applications mobiles, UI/UX design et solutions digitales." />
+  <title>À Propos — CODEUR X | Votre vision, notre code</title>
+
+  <link href="img/WhatsApp Image 2026-03-25 at 14.32.51.jpeg" rel="icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ---- TEAM CARDS ---- */
+    .team-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--glass-shadow);
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .team-card:hover {
+      background: var(--glass-bg-hover);
+      border-color: var(--glass-border-hover);
+      transform: translateY(-10px);
+      box-shadow: var(--glass-shadow-hover);
+    }
+
+    .team-img-wrap {
+      position: relative;
+      overflow: hidden;
+      height: 260px;
+    }
+
+    .team-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition-slow);
+    }
+
+    .team-card:hover .team-img {
+      transform: scale(1.08);
+    }
+
+    .team-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(5, 8, 16, 0.9));
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .team-card:hover .team-overlay {
+      opacity: 1;
+    }
+
+    .team-socials {
+      display: flex;
+      gap: 10px;
+      transform: translateY(10px);
+      transition: var(--transition);
+    }
+
+    .team-card:hover .team-socials {
+      transform: translateY(0);
+    }
+
+    .team-social {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      transition: var(--transition);
+    }
+
+    .team-social:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .team-body {
+      padding: 22px;
+    }
+
+    .team-body h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .team-role {
+      font-size: 0.82rem;
+      color: var(--accent);
+      font-weight: 600;
+      text-transform: none;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .team-body p {
+      font-size: 0.85rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    .team-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+      margin-top: 14px;
+    }
+
+    .team-skill {
+      padding: 4px 10px;
+      background: rgba(14, 154, 152, 0.15);
+      border: 1px solid var(--border-accent);
+      border-radius: 4px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--cyan);
+    }
+
+    /* ---- VALUES ---- */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .value-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--glass-shadow);
+    }
+
+    .value-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient);
+      transform: scaleX(0);
+      transition: var(--transition);
+    }
+
+    .value-card:hover {
+      background: var(--glass-bg-hover);
+      border-color: var(--glass-border-hover);
+      transform: translateY(-8px);
+      box-shadow: var(--glass-shadow-hover);
+    }
+
+    .value-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .value-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.28);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      box-shadow: 0 6px 18px rgba(11, 42, 91, 0.05), inset 0 1px 2px rgba(255, 255, 255, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      color: var(--teal);
+      margin: 0 auto 20px;
+      transition: var(--transition);
+    }
+
+    .value-card:hover .value-icon {
+      background: var(--gradient);
+      border-color: transparent;
+      color: var(--white);
+      transform: scale(1.12) rotate(4deg);
+      box-shadow: 0 10px 28px rgba(14, 154, 152, 0.3);
+    }
+
+    .value-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .value-card p {
+      font-size: 0.88rem;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    /* ---- MISSION/VISION ---- */
+    .mv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    .mv-card {
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 40px 35px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--glass-shadow);
+      transition: var(--transition);
+    }
+
+    .mv-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(14, 154, 152, 0.12), transparent 60%);
+      pointer-events: none;
+    }
+
+    .mv-card:hover {
+      background: var(--glass-bg-hover);
+      border-color: var(--glass-border-hover);
+      transform: translateY(-5px);
+      box-shadow: var(--glass-shadow-hover);
+    }
+
+    .mv-num {
+      font-family: var(--font-mono);
+      font-size: 4rem;
+      font-weight: 900;
+      color: rgba(20, 184, 200, 0.18);
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      line-height: 1;
+      user-select: none;
+    }
+
+    .mv-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .mv-card h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .mv-card p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      line-height: 1.8;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .mv-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .values-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page-header h1 {
+        font-size: 2.2rem;
+      }
+
+      .mv-card {
+        padding: 30px 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Page Loader -->
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-3d-wrapper">
+      <div class="loader-3d-aura"></div>
+      <div class="loader-3d-logo">
+        <img src="img/cx-4.png" alt="Logo CODEUR X" class="loader-3d-img" />
+        <div class="loader-3d-shine"></div>
+      </div>
+      <div class="loader-3d-shadow"></div>
+    </div>
+    <div class="loader-bar">
+      <div class="loader-progress"></div>
+    </div>
+  </div>
+
+  <!-- Nav Overlay -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar scrolled" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="CODEUR X Accueil">
+        <span class="logo-text">CODEUR <span class="logo-x">X</span></span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">Accueil</a></li>
+        <li><a href="about.html" class="nav-link active">À Propos</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
+        <li><a href="contact.html" class="nav-cta">Nous Contacter</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="particles-bg"></div>
+    <!-- Cercles décoratifs de marque -->
+    <div style="position:absolute;top:25px;right:40px;pointer-events:none;opacity:0.8;">
+      <div
+        style="width:40px;height:40px;border-radius:50%;background:var(--teal);box-shadow:0 4px 15px var(--accent-glow);">
+      </div>
+      <div
+        style="width:28px;height:28px;border-radius:50%;background:var(--cyan);position:absolute;bottom:-10px;right:-10px;box-shadow:0 4px 15px var(--accent2-glow);">
+      </div>
+    </div>
+    <div class="page-header-badge"><i class="fas fa-users"></i> Votre vision, notre code</div>
+    <h1>À Propos de <span class="keyword-teal">CODEUR X</span></h1>
+    <p>Notre histoire, nos développeurs passionnés et les valeurs qui guident chacune de nos réalisations digitales.</p>
+  </div>
+
+  <!-- STORY SECTION -->
+  <section>
+    <div class="container">
+      <div class="grid-2" style="gap:80px;align-items:center">
+        <div class="reveal-left">
+          <div style="border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)">
+            <img src="img/cx-4.png" alt="Notre Histoire" style="width:100%;height:420px;object-fit:cover"
+              loading="lazy" />
+          </div>
+        </div>
+        <div class="reveal-right">
+          <div class="section-badge"><i class="fas fa-history"></i> Notre Histoire</div>
+          <h2 style="font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;margin-bottom:20px;line-height:1.2">
+            Comment tout a <span class="gradient-text">commencé</span>
+          </h2>
+          <div class="timeline" style="margin-top:10px">
+            <div class="timeline-item">
+              <div class="timeline-date">2025 — Fondation</div>
+              <div class="timeline-content">
+                <h4>Naissance de CODEUR X</h4>
+                <p>Un groupe de 2 passionnés du code fondent CODEUR X avec la vision de créer des solutions numériques
+                  innovantes accessibles à tous.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">2026 — Croissance</div>
+              <div class="timeline-content">
+                <h4>Expansion de l'équipe</h4>
+                <p>Nous atteignons 50 projets réalisés et agrandissons l'équipe avec des talents en systèmes embarqués,
+                  web et design centré sur l'humain.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION / VISION -->
+  <section style="background:var(--secondary)">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge"><i class="fas fa-bullseye"></i> Mission & Vision</div>
+        <h2>Ce qui nous <span class="gradient-text">motive</span> chaque jour</h2>
+      </div>
+      <div class="mv-grid">
+        <div class="mv-card reveal-left">
+          <span class="mv-num">01</span>
+          <div class="mv-icon"><i class="fas fa-bullseye"></i></div>
+          <h3>Notre Mission</h3>
+          <p>Accompagner entrepreneurs, startups et entreprises dans leur transformation digitale en leur fournissant
+            des solutions technologiques de haute qualité, innovantes et sur mesure. Nous rendons le numérique
+            accessible et performant pour chacun de nos clients.</p>
+        </div>
+        <div class="mv-card reveal-right">
+          <span class="mv-num">02</span>
+          <div class="mv-icon"><i class="fas fa-eye"></i></div>
+          <h3>Notre Vision</h3>
+          <p>Devenir la référence incontournable en matière de développement digital en Afrique et au-delà. Nous
+            aspirons à un monde où chaque entreprise, quelle que soit sa taille, bénéficie d'outils numériques à la
+            hauteur de ses ambitions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge"><i class="fas fa-heart"></i> Nos Valeurs</div>
+        <h2>Les valeurs qui nous <span class="gradient-text">définissent</span></h2>
+        <p>Des principes fondamentaux qui guident toutes nos décisions et interactions</p>
+      </div>
+      <div class="values-grid">
+        <div class="value-card reveal delay-1">
+          <div class="value-icon"><i class="fas fa-medal"></i></div>
+          <h3>Excellence</h3>
+          <p>Nous visons l'excellence dans chaque ligne de code, chaque design et chaque interaction avec nos clients.
+          </p>
+        </div>
+        <div class="value-card reveal delay-2">
+          <div class="value-icon"><i class="fas fa-lightbulb"></i></div>
+          <h3>Innovation</h3>
+          <p>Toujours à la pointe des nouvelles technologies, nous apportons des solutions créatives et avant-gardistes.
+          </p>
+        </div>
+        <div class="value-card reveal delay-3">
+          <div class="value-icon"><i class="fas fa-handshake"></i></div>
+          <h3>Intégrité</h3>
+          <p>Transparence, honnêteté et respect des engagements sont au cœur de chacune de nos relations.</p>
+        </div>
+        <div class="value-card reveal delay-1">
+          <div class="value-icon"><i class="fas fa-users"></i></div>
+          <h3>Collaboration</h3>
+          <p>Nous travaillons en étroite collaboration avec nos clients pour créer des solutions qui leur ressemblent.
+          </p>
+        </div>
+        <div class="value-card reveal delay-2">
+          <div class="value-icon"><i class="fas fa-tachometer-alt"></i></div>
+          <h3>Performance</h3>
+          <p>Nos solutions sont optimisées pour offrir la meilleure expérience utilisateur avec des performances
+            maximales.</p>
+        </div>
+        <div class="value-card reveal delay-3">
+          <div class="value-icon"><i class="fas fa-infinity"></i></div>
+          <h3>Durabilité</h3>
+          <p>Nous développons des solutions pérennes, maintenables et évolutives qui grandissent avec votre entreprise.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section style="background:var(--secondary)" class="skills-section">
+    <div class="container">
+      <div class="grid-2" style="gap:80px;align-items:center">
+        <div class="reveal-left">
+          <div class="section-badge"><i class="fas fa-chart-bar"></i> Compétences</div>
+          <h2 style="font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;margin-bottom:30px;line-height:1.2">
+            Notre niveau de <span class="gradient-text">maîtrise technique</span>
+          </h2>
+          <div class="skill-bar">
+            <div class="skill-bar-header"><span>Développement Frontend & Backend</span><span class="percent">95%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="95%"></div>
+            </div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-header"><span>Annalyse des données</span><span class="percent">90%</span></div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="90%"></div>
+            </div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-header"><span>Applications Mobiles</span><span class="percent">88%</span></div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="88%"></div>
+            </div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-header"><span>UI/UX Design</span><span class="percent">85%</span></div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="85%"></div>
+            </div>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-bar-header"><span>DevOps & Cloud</span><span class="percent">80%</span></div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="80%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal-right">
+          <img src="img/e2.jpeg" alt="Notre équipe travaille"
+            style="width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow)" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-badge"><i class="fas fa-user-tie"></i> L'Équipe</div>
+        <h2>Les talents derrière <span class="gradient-text">CODEUR X</span></h2>
+        <p>Une équipe passionnée et expérimentée prête à transformer vos projets en succès</p>
+      </div>
+      <div class="grid-4">
+        <div class="team-card reveal delay-1">
+          <div class="team-img-wrap">
+            <img class="team-img" src="img/Jml_LE_upscale_prime.jpg" alt="John Mulonga" loading="lazy" />
+            <div class="team-overlay">
+              <div class="team-socials">
+                <a href="https://www.instagram.com/ir_johny_tec" class="team-social"><i
+                    class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@ir_johnmulonga?_r=1&_t=ZS-952Q7iyStGq" class="team-social"><i
+                    class="fab fa-tiktok"></i></a>
+                <a href="https://github.com/john-mulonga" class="team-social"><i class="fab fa-github"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-body">
+            <h3>John Mulonga</h3>
+            <div class="team-role">DevSecOps</div>
+            <p>Full-stack Développeur. Expert en IOT, </p>
+            <div class="team-skills">
+              <span class="team-skill">JavaScript</span>
+              <span class="team-skill">MySQL</span>
+              <span class="team-skill">C/C++</span>
+            </div>
+          </div>
+        </div>
+        <div class="team-card reveal delay-2">
+          <div class="team-img-wrap">
+            <img class="team-img" src="img/Alex_LE_upscale_prime.jpg" alt="Alexandre Kyungu" loading="lazy" />
+            <div class="team-overlay">
+              <div class="team-socials">
+                <a href="https://www.instagram.com/alex_androvitch2" class="team-social"><i
+                    class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-body">
+            <h3>Alexandre Kyungu</h3>
+            <div class="team-role">UI/UX Designer</div>
+            <p>Designer créatif spécialisé dans les interfaces modernes et l'expérience utilisateur.</p>
+            <div class="team-skills">
+              <span class="team-skill">Figma</span>
+              <span class="team-skill">Adobe XD</span>
+              <span class="team-skill">Framer</span>
+            </div>
+          </div>
+        </div>
+        <div class="team-card reveal delay-3">
+          <div class="team-img-wrap">
+            <img class="team-img" src="img/Tino_LE_upscale_prime.jpg" alt="Martino Masengo" loading="lazy" />
+            <div class="team-overlay">
+              <div class="team-socials">
+                <a href="https://www.instagram.com/a_l_v_i_n_t_i_n_o" class="team-social"><i
+                    class="fab fa-instagram"></i></a>
+                <a href="https://github.com/martinomasengo-ai" class="team-social"><i class="fab fa-github"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-body">
+            <h3>Martino Masengo</h3>
+            <div class="team-role">Développeur Mobile</div>
+            <p>Développeur mobile maîtrisant React Native, Flutter et les plateformes Android/iOS.</p>
+            <div class="team-skills">
+              <span class="team-skill">Flutter</span>
+              <span class="team-skill">React Native</span>
+              <span class="team-skill">Firebase</span>
+            </div>
+          </div>
+        </div>
+        <div class="team-card reveal delay-4">
+          <div class="team-img-wrap">
+            <img class="team-img" src="img/Davka_LE_upscale_prime.jpg" alt="David Kabalu" loading="lazy" />
+            <div class="team-overlay">
+              <div class="team-socials">
+                <a href="https://www.instagram.com/davka2.0" class="team-social"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/davkakabalu905-collab" class="team-social"><i class="fab fa-github"></i></a>
+                <a href="https://www.tiktok.com/@davkakabalu1?_r=1&_t=ZS-952QE7H2iyu" class="team-social"><i
+                    class="fab fa-tiktok"></i></a>
+
+              </div>
+            </div>
+          </div>
+          <div class="team-body">
+            <h3>David Kabalu</h3>
+            <div class="team-role">Développeur Web</div>
+            <p>Expert Full-stack en Creation et Optimisation d'Application web.</p>
+            <div class="team-skills">
+              <span class="team-skill">Html</span>
+              <span class="team-skill">Css</span>
+              <span class="team-skill">Php</span>
+              <span class="team-skill">Java</span>
+              <span class="team-skill">React</span>
+              <span class="team-skill">Laravel</span>
+            </div>
+          </div>
+        </div>
+        <div class="team-card reveal delay-4">
+          <div class="team-img-wrap">
+            <img class="team-img" src="img/jt.jpeg" alt="Josue Nyembo" loading="lazy" />
+            <div class="team-overlay">
+              <div class="team-socials">
+                <a href="https://www.instagram.com/joshua20josh?utm_source=qr&igsh=MXR0bzdlMjRzdTk5aQ=="
+                  class="team-social"><i class="fab fa-instagram"></i></a>
+                <a href="https://https://github.com/Joshuajsh007" class="team-social"><i class="fab fa-github"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-body">
+            <h3>Josue Nyembo</h3>
+            <div class="team-role">Data Analyst</div>
+            <p>Expert en Analyse & Traitement des Données et Developpeur Desktop</p>
+            <div class="team-skills">
+              <span class="team-skill">Python</span>
+              <span class="team-skill">Java</span>
+              <span class="team-skill">MySQL</span>
+            </div>
+          </div>
+        </div>
+        <div class="team-card reveal delay-4">
+          <div class="team-img-wrap">
+            <img class="team-img" src="img/js.jpeg" alt="Josue kitumaini" loading="lazy" />
+            <div class="team-overlay">
+              <div class="team-socials">
+                <a href="https://www.instagram.com/davka2.0" class="team-social"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/musombokelwa" class="team-social"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/josu%C3%A9-kitumaini-836215221?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+                  class="team-social"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://x.com/josue_mus2?s=21" class="team-social"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=100076307891817" class="team-social"><i
+                    class="fab fa-facebook"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-body">
+            <h3>Josue Kitumaini</h3>
+            <div class="team-role">Data Scientist</div>
+            <p>Expert en Analyse des Données</p>
+            <div class="team-skills">
+              <span class="team-skill">Python</span>
+              <span class="team-skill">C</span>
+              <span class="team-skill">MySQL</span>
+            </div>
+          </div>
+        </div>
+        <div class="team-card reveal delay-4">
+          <div class="team-img-wrap">
+            <img class="team-img" src="img/jnos.jpeg" alt="Jenos Mby" loading="lazy" />
+            <div class="team-overlay">
+              <div class="team-socials">
+                <a href="https://www.instagram.com/jenosmby" class="team-social"><i class="fab fa-instagram"></i></a>
+                <a href="https://github.com/jenos98" class="team-social"><i class="fab fa-github"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-body">
+            <h3>Jenos Mbayo</h3>
+            <div class="team-role">Développeur IOT</div>
+            <p>Expert en conception robotique, Concepteur 3D </p>
+            <div class="team-skills">
+              <span class="team-skill">Python</span>
+              <span class="team-skill">C/C++</span>
+              <span class="team-skill">Blender</span>
+            </div>
+          </div>
+        </div>
+        <div class="team-card reveal delay-4">
+          <div class="team-img-wrap">
+            <img class="team-img" src="img/nahomie.jpeg" alt="Naomi Kayembe" loading="lazy" />
+            <div class="team-overlay">
+              <div class="team-socials">
+                <a href="https://www.instagram.com/yoshida3.istagram?utm_source=qr&igsh=NW5nbGt1dHhtdmd4"
+                  class="team-social"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@naomiekay727?_r=1&_t=ZS-952XxTkXwe1" class="team-social"><i
+                    class="fab fa-tiktok"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-body">
+            <h3>Naomi Kayembe</h3>
+            <div class="team-role">Développeur Web</div>
+            <p>Développeuse Web creation des applications web</p>
+            <div class="team-skills">
+              <span class="team-skill">Html</span>
+              <span class="team-skill">Css</span>
+              <span class="team-skill">javascript</span>
+            </div>
+          </div>
+        </div>
+        <div class="team-card reveal delay-4">
+          <div class="team-img-wrap">
+            <img class="team-img" src="img/andy.jpeg" alt="Andy Nselele" loading="lazy" />
+            <div class="team-overlay">
+              <div class="team-socials">
+                <a href="" class="team-social"><i class="fab fa-instagram"></i></a>
+                <a href="" class="team-social"><i class="fab fa-github"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-body">
+            <h3>Andy Nselele</h3>
+            <div class="team-role">Développeur Backend & Python</div>
+            <p>Conception d'architectures logicielles performantes, API et bases de données</p>
+            <div class="team-skills">
+              <span class="team-skill">Python</span>
+              <span class="team-skill">C</span>
+              <span class="team-skill">MySQL</span>
+            </div>
+          </div>
+        </div>
+        <div class="team-card reveal delay-4">
+          <div class="team-img-wrap">
+            <img class="team-img" src="img/h.jpeg" alt="Honore Mushagalusa" loading="lazy" />
+            <div class="team-overlay">
+              <div class="team-socials">
+                <a href="https://www.instagram.com/honorescott1?igsh=eG56ajdtbHNjaG1i" class="team-social"><i
+                    class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@honorescott4?_r=1&_t=ZS-95noh54dr0O" class="team-social"><i
+                    class="fab fa-tiktok"></i></a>
+                <a href="https://www.facebook.com/honore.romeon" class="team-social"><i
+                    class="fab fa-facebook-f"></i></a>
+
+              </div>
+            </div>
+          </div>
+          <div class="team-body">
+            <h3>Honore Mushagalusa</h3>
+            <div class="team-role">Développeur IOT</div>
+            <p>Expert en réalisations des systèmes embarqués</p>
+            <div class="team-skills">
+              <span class="team-skill">Arduino IDE</span>
+              <span class="team-skill">C/C++</span>
+              <span class="team-skill">Proteus</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-card reveal delay-4">
+          <div class="team-img-wrap">
+            <img class="team-img" src="img/junior .jpeg" alt="Honore Mushagalusa" loading="lazy" />
+            <div class="team-overlay">
+              <div class="team-socials">
+                <a href="https://www.instagram.com/junior_katende_officiel?igsh=cTA5M2I3eXpsM2Fk" class="team-social"><i
+                    class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/juniorjkbjr" class="team-social"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.threads.com/@junior_katende_officiel" class="team-social"><i
+                    class="fab fa-threads"></i></a>
+                <a href="https://www.tiktok.com/@junior.katendejun?_r=1&_t=ZS-95nowacVFIH" class="team-social"><i
+                    class="fab fa-tiktok"></i></a>
+                <a href="https://github.com/katendejunior976-bot" class="team-social"><i class="fab fa-github"></i></a>
+
+              </div>
+            </div>
+          </div>
+          <div class="team-body">
+            <h3>Junior Katende</h3>
+            <div class="team-role">Data analyst et  Createurs des contenus</div>
+            <p>Expert en traitement des données et réalisation des contenus mediatiques</p>
+            <div class="team-skills">
+              <span class="team-skill">Python</span>
+              <span class="team-skill">SQL</span>
+              <span class="team-skill">Wordpress</span>
+            </div>
+          </div>
+        </div>
+        <div class="team-card reveal delay-4">
+          <div class="team-img-wrap">
+            <img class="team-img" src="img/jeph.jpeg" alt="Jephte Kahozi" loading="lazy" />
+            <div class="team-overlay">
+              <div class="team-socials">
+                <a href="https://www.instagram.com/mr_jeph_kahozi_" class="team-social"><i
+                    class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="team-body">
+            <h3>Jephte Kahozi</h3>
+            <div class="team-role">Community Manager</div>
+            <p>Maitre en relation publique et Marketing digital et resotage</p>
+            <div class="team-skills">
+              <span class="team-skill">Relations Publiques</span>
+              <span class="team-skill">Marketing digital</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background:var(--secondary);padding:80px 0">
+    <div class="container" style="text-align:center">
+      <div class="reveal">
+        <div class="section-badge" style="justify-content:center"><i class="fas fa-handshake"></i> Rejoignez-nous</div>
+        <h2 style="font-size:clamp(1.8rem,4vw,3rem);font-weight:900;margin-bottom:20px">
+          Travaillons <span class="gradient-text">ensemble</span>
+        </h2>
+        <p
+          style="color:var(--gray);font-size:1.05rem;margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto">
+          Vous avez un projet en tête ? Notre équipe est prête à vous accompagner de l'idée à la réalisation.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center">
+          <a href="contact.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Contactez-nous</a>
+          <a href="services.html" class="btn btn-secondary"><i class="fas fa-layer-group"></i> Nos services</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/243970037759" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="tooltip">Contactez-nous sur WhatsApp</span>
+  </a>
+
+  <!-- Scroll to top -->
+  <button class="scroll-top" id="scrollTop" aria-label="Retour en haut">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <div class="toast-content">
+      <div class="toast-icon"><i class="fas fa-check"></i></div>
+      <div class="toast-text">
+        <h5>Succès</h5>
+        <p>Message envoyé avec succès</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
