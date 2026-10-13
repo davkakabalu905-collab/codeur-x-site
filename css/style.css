@@ -1631,7 +1631,8 @@ footer {
   border-radius: 12px;
   color: var(--navy);
   font-family: var(--font-main);
-  font-size: 0.95rem;
+  font-size: 16px; /* 16px empeche le zoom automatique sur iOS/Android au focus */
+  touch-action: manipulation;
   box-shadow: 0 4px 15px rgba(11, 42, 91, 0.03), inset 0 1px 2px rgba(255, 255, 255, 0.8);
   transition: var(--transition);
   outline: none;
