@@ -455,35 +455,52 @@ button {
 .hamburger {
   display: none;
   flex-direction: column;
-  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  gap: 5.5px;
   cursor: pointer;
+  width: 42px;
+  height: 42px;
   padding: 8px;
   border-radius: var(--radius-sm);
-  background: transparent;
-  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: var(--transition);
   z-index: 1100;
 }
-  gap: 5px;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: var(--radius-sm);
-  background: transparent;
-  border: none;
-  z-index: 1100;
+
+.hamburger:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.35);
 }
 
 .hamburger span {
   display: block;
-  width: 24px;
-  height: 1.5px;
-  background: var(--text-primary);
+  width: 22px;
+  height: 2.5px;
+  background: #ffffff !important;
   border-radius: 2px;
-  transition: var(--transition);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.hamburger.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+/* Light Mode : Hamburger en noir pur et net pour une visibilité totale */
+[data-theme="light"] .hamburger {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.18);
+}
+
+[data-theme="light"] .hamburger:hover {
+  background: rgba(0, 0, 0, 0.09);
+  border-color: rgba(0, 0, 0, 0.28);
+}
+
+[data-theme="light"] .hamburger span {
+  background: #000000 !important;
+}
+
+.hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
 .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.hamburger.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
 .nav-overlay {
   display: none;
@@ -1989,9 +2006,14 @@ footer {
     padding: 24px;
     gap: 8px;
     transition: right 0.3s ease;
+    overflow-y: auto;
   }
 
   .nav-menu.open { right: 0; }
+
+  .nav-menu li {
+    width: 100%;
+  }
 
   .nav-link, .nav-cta {
     width: 100%;
@@ -2004,12 +2026,12 @@ footer {
     display: none !important;
   }
 
-  /* Sur mobile : afficher le sélecteur de thème dans le menu hamburger */
+  /* Sur mobile : afficher le sélecteur de thème directement sous le bouton Nous Contacter */
   .nav-theme-item {
     display: block;
     width: 100%;
-    margin-top: auto;
-    padding-top: 16px;
+    margin-top: 10px;
+    padding-top: 14px;
     border-top: 1px solid var(--border);
   }
 
