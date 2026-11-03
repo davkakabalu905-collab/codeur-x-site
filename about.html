@@ -4,37 +4,49 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta content="Codeur X" name="keywords">
-  <meta name="description"
-    content="Groupe de développeurs informatiques professionnels. Sites web, applications mobiles, UI/UX design et solutions digitales." />
+  <meta name="description" content="À propos de CODEUR X — notre histoire, notre équipe et nos valeurs." />
   <title>À Propos — CODEUR X | Votre vision, notre code</title>
-
-  <link href="img/WhatsApp Image 2026-03-25 at 14.32.51.jpeg" rel="icon">
+  <link href="img/cx-4.png" rel="icon" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@400;500;700&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <script>
+    (function () {
+      const t = localStorage.getItem('cx-theme') ||
+        (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
   <style>
-    /* ---- TEAM CARDS ---- */
+    #scrollProgress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      width: 0%;
+      background: var(--teal);
+      z-index: 99999;
+      transition: width .1s linear;
+      box-shadow: none;
+    }
+
+    /* Team cards */
     .team-card {
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border: 1px solid var(--glass-border);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       overflow: hidden;
-      box-shadow: var(--glass-shadow);
-      transition: var(--transition);
       text-align: center;
+      transition: var(--transition);
     }
 
     .team-card:hover {
-      background: var(--glass-bg-hover);
-      border-color: var(--glass-border-hover);
-      transform: translateY(-10px);
-      box-shadow: var(--glass-shadow-hover);
+      border-color: var(--border-hover);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .4);
     }
 
     .team-img-wrap {
@@ -48,16 +60,18 @@
       height: 100%;
       object-fit: cover;
       transition: var(--transition-slow);
+      filter: brightness(.8) saturate(.85);
     }
 
     .team-card:hover .team-img {
       transform: scale(1.08);
+      filter: brightness(.9) saturate(1);
     }
 
     .team-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, transparent 40%, rgba(5, 8, 16, 0.9));
+      background: linear-gradient(to bottom, transparent 40%, rgba(8, 8, 8, .92));
       display: flex;
       align-items: flex-end;
       justify-content: center;
@@ -82,87 +96,83 @@
     }
 
     .team-social {
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       border-radius: 8px;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      color: var(--white);
+      background: rgba(255, 255, 255, .1);
+      border: 1px solid rgba(255, 255, 255, .2);
+      color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.85rem;
+      font-size: .85rem;
       transition: var(--transition);
     }
 
     .team-social:hover {
-      background: var(--accent);
-      border-color: var(--accent);
+      background: var(--teal);
+      border-color: var(--teal);
     }
 
     .team-body {
-      padding: 22px;
+      padding: 20px;
     }
 
     .team-body h3 {
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 700;
+      color: var(--text-primary);
       margin-bottom: 4px;
     }
 
     .team-role {
-      font-size: 0.82rem;
-      color: var(--accent);
+      font-size: .78rem;
+      color: var(--teal);
       font-weight: 600;
-      text-transform: none;
       letter-spacing: 1px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .team-body p {
-      font-size: 0.85rem;
-      color: var(--gray);
+      font-size: .82rem;
+      color: var(--text-muted);
       line-height: 1.6;
     }
 
     .team-skills {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 5px;
       justify-content: center;
-      margin-top: 14px;
+      margin-top: 12px;
     }
 
     .team-skill {
-      padding: 4px 10px;
-      background: rgba(14, 154, 152, 0.15);
+      padding: 3px 10px;
+      background: var(--teal-dim);
       border: 1px solid var(--border-accent);
       border-radius: 4px;
-      font-size: 0.7rem;
-      font-weight: 600;
+      font-size: .68rem;
+      font-weight: 700;
       color: var(--cyan);
     }
 
-    /* ---- VALUES ---- */
+    /* Values */
     .values-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
+      gap: 24px;
     }
 
     .value-card {
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border: 1px solid var(--glass-border);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 32px 24px;
       text-align: center;
       transition: var(--transition);
       position: relative;
       overflow: hidden;
-      box-shadow: var(--glass-shadow);
     }
 
     .value-card::before {
@@ -171,17 +181,16 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 3px;
+      height: 2px;
       background: var(--gradient);
       transform: scaleX(0);
       transition: var(--transition);
     }
 
     .value-card:hover {
-      background: var(--glass-bg-hover);
-      border-color: var(--glass-border-hover);
-      transform: translateY(-8px);
-      box-shadow: var(--glass-shadow-hover);
+      border-color: var(--border-hover);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .3);
     }
 
     .value-card:hover::before {
@@ -189,18 +198,15 @@
     }
 
     .value-icon {
-      width: 64px;
-      height: 64px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.28);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 255, 255, 0.65);
-      box-shadow: 0 6px 18px rgba(11, 42, 91, 0.05), inset 0 1px 2px rgba(255, 255, 255, 0.85);
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      background: var(--teal-dim);
+      border: 1px solid var(--border-accent);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       color: var(--teal);
       margin: 0 auto 20px;
       transition: var(--transition);
@@ -209,66 +215,51 @@
     .value-card:hover .value-icon {
       background: var(--gradient);
       border-color: transparent;
-      color: var(--white);
-      transform: scale(1.12) rotate(4deg);
-      box-shadow: 0 10px 28px rgba(14, 154, 152, 0.3);
+      color: #fff;
+      transform: scale(1.1) rotate(4deg);
     }
 
     .value-card h3 {
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 700;
+      color: var(--text-primary);
       margin-bottom: 10px;
     }
 
     .value-card p {
-      font-size: 0.88rem;
-      color: var(--gray);
+      font-size: .85rem;
+      color: var(--text-muted);
       line-height: 1.7;
     }
 
-    /* ---- MISSION/VISION ---- */
+    /* Mission/Vision */
     .mv-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 30px;
+      gap: 28px;
     }
 
     .mv-card {
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border: 1px solid var(--glass-border);
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
       border-radius: var(--radius-lg);
       padding: 40px 35px;
       position: relative;
       overflow: hidden;
-      box-shadow: var(--glass-shadow);
       transition: var(--transition);
     }
 
-    .mv-card::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(14, 154, 152, 0.12), transparent 60%);
-      pointer-events: none;
-    }
-
     .mv-card:hover {
-      background: var(--glass-bg-hover);
-      border-color: var(--glass-border-hover);
-      transform: translateY(-5px);
-      box-shadow: var(--glass-shadow-hover);
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .3);
     }
 
     .mv-num {
       font-family: var(--font-mono);
       font-size: 4rem;
       font-weight: 900;
-      color: rgba(20, 184, 200, 0.18);
+      color: rgba(20, 184, 200, .08);
       position: absolute;
       top: 10px;
       right: 20px;
@@ -277,32 +268,122 @@
     }
 
     .mv-icon {
-      width: 52px;
-      height: 52px;
+      width: 50px;
+      height: 50px;
       border-radius: 12px;
       background: var(--gradient);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
-      color: var(--white);
+      font-size: 1.2rem;
+      color: #fff;
       margin-bottom: 20px;
     }
 
     .mv-card h3 {
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: 800;
+      color: var(--text-primary);
       margin-bottom: 14px;
     }
 
     .mv-card p {
-      color: var(--gray);
-      font-size: 0.95rem;
+      color: var(--text-secondary);
+      font-size: .9rem;
       line-height: 1.8;
     }
 
-    /* Responsive */
-    @media (max-width: 900px) {
+    /* Timeline */
+    .timeline {
+      margin-top: 10px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 28px;
+      margin-bottom: 28px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: none;
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 22px;
+      bottom: -8px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--teal), transparent);
+    }
+
+    .timeline-item:last-child::after {
+      display: none;
+    }
+
+    .timeline-date {
+      font-family: var(--font-mono);
+      font-size: .75rem;
+      color: var(--teal);
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .timeline-content h4 {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .timeline-content p {
+      font-size: .85rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* Skill bars */
+    .skill-bar {
+      margin-bottom: 22px;
+    }
+
+    .skill-bar-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .skill-bar-header span {
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .skill-bar-header .percent {
+      font-family: var(--font-mono);
+      font-size: .8rem;
+      color: var(--teal);
+    }
+
+    .skill-bar-track {
+      height: 6px;
+      background: rgba(255, 255, 255, .06);
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    @media(max-width:900px) {
       .values-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -312,17 +393,13 @@
       }
     }
 
-    @media (max-width: 600px) {
+    @media(max-width:600px) {
       .values-grid {
         grid-template-columns: 1fr;
       }
 
-      .page-header h1 {
-        font-size: 2.2rem;
-      }
-
-      .mv-card {
-        padding: 30px 25px;
+      .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
   </style>
@@ -330,33 +407,16 @@
 
 <body>
 
-  <!-- Page Loader -->
-  <div class="page-loader" id="pageLoader">
-    <div class="loader-3d-wrapper">
-      <div class="loader-3d-aura"></div>
-      <div class="loader-3d-logo">
-        <img src="img/cx-4.png" alt="Logo CODEUR X" class="loader-3d-img" />
-        <div class="loader-3d-shine"></div>
-      </div>
-      <div class="loader-3d-shadow"></div>
-    </div>
-    <div class="loader-bar">
-      <div class="loader-progress"></div>
-    </div>
-  </div>
-
-  <!-- Nav Overlay -->
+  <div id="scrollProgress"></div>
   <div class="nav-overlay" id="navOverlay"></div>
 
   <!-- NAVBAR -->
-  <nav class="navbar scrolled" id="navbar">
+  <nav class="navbar" id="navbar">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo" aria-label="CODEUR X Accueil">
-        <span class="logo-text">CODEUR <span class="logo-x">X</span></span>
+        CODEUR&nbsp;<span class="logo-x">X</span>
       </a>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+
       <ul class="nav-menu" id="navMenu">
         <li><a href="index.html" class="nav-link">Accueil</a></li>
         <li><a href="about.html" class="nav-link active">À Propos</a></li>
@@ -364,42 +424,45 @@
         <li><a href="portfolio.html" class="nav-link">Portfolio</a></li>
         <li><a href="contact.html" class="nav-cta">Nous Contacter</a></li>
       </ul>
+
+      <div class="nav-actions">
+        <button id="themeToggle" class="theme-toggle" aria-label="Changer de thème"
+          title="Basculer Mode Clair / Sombre">
+          <i class="fas fa-moon theme-icon-dark"></i>
+          <i class="fas fa-sun theme-icon-light"></i>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
   <!-- PAGE HEADER -->
   <div class="page-header">
-    <div class="particles-bg"></div>
-    <!-- Cercles décoratifs de marque -->
-    <div style="position:absolute;top:25px;right:40px;pointer-events:none;opacity:0.8;">
-      <div
-        style="width:40px;height:40px;border-radius:50%;background:var(--teal);box-shadow:0 4px 15px var(--accent-glow);">
-      </div>
-      <div
-        style="width:28px;height:28px;border-radius:50%;background:var(--cyan);position:absolute;bottom:-10px;right:-10px;box-shadow:0 4px 15px var(--accent2-glow);">
-      </div>
-    </div>
-    <div class="page-header-badge"><i class="fas fa-users"></i> Votre vision, notre code</div>
-    <h1>À Propos de <span class="keyword-teal">CODEUR X</span></h1>
+    <div class="section-tag" style="margin:0 auto 16px;display:inline-flex;"><i class="fas fa-users"></i> Votre vision,
+      notre code</div>
+    <h1>À Propos de <span class="gradient-text">CODEUR X</span></h1>
     <p>Notre histoire, nos développeurs passionnés et les valeurs qui guident chacune de nos réalisations digitales.</p>
   </div>
 
-  <!-- STORY SECTION -->
-  <section>
+  <!-- STORY -->
+  <section style="background:var(--bg-base);">
     <div class="container">
-      <div class="grid-2" style="gap:80px;align-items:center">
+      <div class="grid-2" style="gap:80px;align-items:center;">
         <div class="reveal-left">
-          <div style="border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)">
-            <img src="img/cx-4.png" alt="Notre Histoire" style="width:100%;height:420px;object-fit:cover"
-              loading="lazy" />
+          <div
+            style="border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow-lg);">
+            <img src="img/CX 5.png" alt="Notre Histoire"
+              style="width:100%;height:420px;object-fit:cover;filter:brightness(.8) saturate(.85);" loading="lazy" />
           </div>
         </div>
         <div class="reveal-right">
-          <div class="section-badge"><i class="fas fa-history"></i> Notre Histoire</div>
-          <h2 style="font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;margin-bottom:20px;line-height:1.2">
-            Comment tout a <span class="gradient-text">commencé</span>
+          <div class="section-tag"><i class="fas fa-history"></i> Notre Histoire</div>
+          <h2 style="font-size:clamp(1.6rem,3.5vw,2.4rem);margin-bottom:24px;letter-spacing:-0.5px;">Comment tout a
+            <span class="gradient-text">commencé</span>
           </h2>
-          <div class="timeline" style="margin-top:10px">
+          <div class="timeline">
             <div class="timeline-item">
               <div class="timeline-date">2025 — Fondation</div>
               <div class="timeline-content">
@@ -423,10 +486,11 @@
   </section>
 
   <!-- MISSION / VISION -->
-  <section style="background:var(--secondary)">
+  <section
+    style="background:var(--bg-surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
     <div class="container">
-      <div class="section-header">
-        <div class="section-badge"><i class="fas fa-bullseye"></i> Mission & Vision</div>
+      <div class="section-header reveal">
+        <div class="section-tag"><i class="fas fa-bullseye"></i> Mission &amp; Vision</div>
         <h2>Ce qui nous <span class="gradient-text">motive</span> chaque jour</h2>
       </div>
       <div class="mv-grid">
@@ -451,10 +515,10 @@
   </section>
 
   <!-- VALUES -->
-  <section>
+  <section style="background:var(--bg-base);">
     <div class="container">
-      <div class="section-header">
-        <div class="section-badge"><i class="fas fa-heart"></i> Nos Valeurs</div>
+      <div class="section-header reveal">
+        <div class="section-tag"><i class="fas fa-heart"></i> Nos Valeurs</div>
         <h2>Les valeurs qui nous <span class="gradient-text">définissent</span></h2>
         <p>Des principes fondamentaux qui guident toutes nos décisions et interactions</p>
       </div>
@@ -499,23 +563,25 @@
   </section>
 
   <!-- SKILLS -->
-  <section style="background:var(--secondary)" class="skills-section">
+  <section
+    style="background:var(--bg-surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);"
+    class="skills-section">
     <div class="container">
-      <div class="grid-2" style="gap:80px;align-items:center">
+      <div class="grid-2" style="gap:80px;align-items:center;">
         <div class="reveal-left">
-          <div class="section-badge"><i class="fas fa-chart-bar"></i> Compétences</div>
-          <h2 style="font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;margin-bottom:30px;line-height:1.2">
-            Notre niveau de <span class="gradient-text">maîtrise technique</span>
+          <div class="section-tag"><i class="fas fa-chart-bar"></i> Compétences</div>
+          <h2 style="font-size:clamp(1.6rem,3.5vw,2.4rem);margin-bottom:30px;letter-spacing:-0.5px;">Notre niveau de
+            <span class="gradient-text">maîtrise technique</span>
           </h2>
           <div class="skill-bar">
-            <div class="skill-bar-header"><span>Développement Frontend & Backend</span><span class="percent">95%</span>
-            </div>
+            <div class="skill-bar-header"><span>Développement Frontend &amp; Backend</span><span
+                class="percent">95%</span></div>
             <div class="skill-bar-track">
               <div class="skill-bar-fill" data-width="95%"></div>
             </div>
           </div>
           <div class="skill-bar">
-            <div class="skill-bar-header"><span>Annalyse des données</span><span class="percent">90%</span></div>
+            <div class="skill-bar-header"><span>Analyse des données</span><span class="percent">90%</span></div>
             <div class="skill-bar-track">
               <div class="skill-bar-fill" data-width="90%"></div>
             </div>
@@ -533,7 +599,7 @@
             </div>
           </div>
           <div class="skill-bar">
-            <div class="skill-bar-header"><span>DevOps & Cloud</span><span class="percent">80%</span></div>
+            <div class="skill-bar-header"><span>DevOps &amp; Cloud</span><span class="percent">80%</span></div>
             <div class="skill-bar-track">
               <div class="skill-bar-fill" data-width="80%"></div>
             </div>
@@ -541,21 +607,23 @@
         </div>
         <div class="reveal-right">
           <img src="img/e2.jpeg" alt="Notre équipe travaille"
-            style="width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow)" loading="lazy" />
+            style="width:100%;border-radius:var(--radius-lg);border:1px solid var(--border);box-shadow:var(--shadow-lg);filter:brightness(.8) saturate(.85);"
+            loading="lazy" />
         </div>
       </div>
     </div>
   </section>
 
   <!-- TEAM -->
-  <section>
+  <section style="background:var(--bg-base);">
     <div class="container">
-      <div class="section-header">
-        <div class="section-badge"><i class="fas fa-user-tie"></i> L'Équipe</div>
+      <div class="section-header reveal">
+        <div class="section-tag"><i class="fas fa-user-tie"></i> L'Équipe</div>
         <h2>Les talents derrière <span class="gradient-text">CODEUR X</span></h2>
         <p>Une équipe passionnée et expérimentée prête à transformer vos projets en succès</p>
       </div>
       <div class="grid-4">
+
         <div class="team-card reveal delay-1">
           <div class="team-img-wrap">
             <img class="team-img" src="img/Jml_LE_upscale_prime.jpg" alt="John Mulonga" loading="lazy" />
@@ -572,14 +640,12 @@
           <div class="team-body">
             <h3>John Mulonga</h3>
             <div class="team-role">DevSecOps</div>
-            <p>Full-stack Développeur. Expert en IOT, </p>
-            <div class="team-skills">
-              <span class="team-skill">JavaScript</span>
-              <span class="team-skill">MySQL</span>
-              <span class="team-skill">C/C++</span>
-            </div>
+            <p>Full-stack Développeur. Expert en IOT.</p>
+            <div class="team-skills"><span class="team-skill">JavaScript</span><span
+                class="team-skill">MySQL</span><span class="team-skill">C/C++</span></div>
           </div>
         </div>
+
         <div class="team-card reveal delay-2">
           <div class="team-img-wrap">
             <img class="team-img" src="img/Alex_LE_upscale_prime.jpg" alt="Alexandre Kyungu" loading="lazy" />
@@ -594,13 +660,11 @@
             <h3>Alexandre Kyungu</h3>
             <div class="team-role">UI/UX Designer</div>
             <p>Designer créatif spécialisé dans les interfaces modernes et l'expérience utilisateur.</p>
-            <div class="team-skills">
-              <span class="team-skill">Figma</span>
-              <span class="team-skill">Adobe XD</span>
-              <span class="team-skill">Framer</span>
-            </div>
+            <div class="team-skills"><span class="team-skill">Figma</span><span class="team-skill">Adobe XD</span><span
+                class="team-skill">Framer</span></div>
           </div>
         </div>
+
         <div class="team-card reveal delay-3">
           <div class="team-img-wrap">
             <img class="team-img" src="img/Tino_LE_upscale_prime.jpg" alt="Martino Masengo" loading="lazy" />
@@ -616,13 +680,11 @@
             <h3>Martino Masengo</h3>
             <div class="team-role">Développeur Mobile</div>
             <p>Développeur mobile maîtrisant React Native, Flutter et les plateformes Android/iOS.</p>
-            <div class="team-skills">
-              <span class="team-skill">Flutter</span>
-              <span class="team-skill">React Native</span>
-              <span class="team-skill">Firebase</span>
-            </div>
+            <div class="team-skills"><span class="team-skill">Flutter</span><span class="team-skill">React
+                Native</span><span class="team-skill">Firebase</span></div>
           </div>
         </div>
+
         <div class="team-card reveal delay-4">
           <div class="team-img-wrap">
             <img class="team-img" src="img/Davka_LE_upscale_prime.jpg" alt="David Kabalu" loading="lazy" />
@@ -630,77 +692,63 @@
               <div class="team-socials">
                 <a href="https://www.instagram.com/davka2.0" class="team-social"><i class="fab fa-instagram"></i></a>
                 <a href="https://github.com/davkakabalu905-collab" class="team-social"><i class="fab fa-github"></i></a>
-                <a href="https://www.tiktok.com/@davkakabalu1?_r=1&_t=ZS-952QE7H2iyu" class="team-social"><i
-                    class="fab fa-tiktok"></i></a>
-
+                <a href="https://www.tiktok.com/@davkakabalu1" class="team-social"><i class="fab fa-tiktok"></i></a>
               </div>
             </div>
           </div>
           <div class="team-body">
             <h3>David Kabalu</h3>
             <div class="team-role">Développeur Web</div>
-            <p>Expert Full-stack en Creation et Optimisation d'Application web.</p>
-            <div class="team-skills">
-              <span class="team-skill">Html</span>
-              <span class="team-skill">Css</span>
-              <span class="team-skill">Php</span>
-              <span class="team-skill">Java</span>
-              <span class="team-skill">React</span>
-              <span class="team-skill">Laravel</span>
-            </div>
+            <p>Expert Full-stack en création et optimisation d'application web.</p>
+            <div class="team-skills"><span class="team-skill">Html</span><span class="team-skill">Css</span><span
+                class="team-skill">PHP</span><span class="team-skill">React</span><span
+                class="team-skill">Laravel</span></div>
           </div>
         </div>
-        <div class="team-card reveal delay-4">
+
+        <div class="team-card reveal delay-1">
           <div class="team-img-wrap">
             <img class="team-img" src="img/jt.jpeg" alt="Josue Nyembo" loading="lazy" />
             <div class="team-overlay">
               <div class="team-socials">
-                <a href="https://www.instagram.com/joshua20josh?utm_source=qr&igsh=MXR0bzdlMjRzdTk5aQ=="
-                  class="team-social"><i class="fab fa-instagram"></i></a>
-                <a href="https://https://github.com/Joshuajsh007" class="team-social"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/joshua20josh" class="team-social"><i
+                    class="fab fa-instagram"></i></a>
+                <a href="https://github.com/Joshuajsh007" class="team-social"><i class="fab fa-github"></i></a>
               </div>
             </div>
           </div>
           <div class="team-body">
             <h3>Josue Nyembo</h3>
             <div class="team-role">Data Analyst</div>
-            <p>Expert en Analyse & Traitement des Données et Developpeur Desktop</p>
-            <div class="team-skills">
-              <span class="team-skill">Python</span>
-              <span class="team-skill">Java</span>
-              <span class="team-skill">MySQL</span>
-            </div>
+            <p>Expert en Analyse &amp; Traitement des Données et Développeur Desktop.</p>
+            <div class="team-skills"><span class="team-skill">Python</span><span class="team-skill">Java</span><span
+                class="team-skill">MySQL</span></div>
           </div>
         </div>
-        <div class="team-card reveal delay-4">
+
+        <div class="team-card reveal delay-2">
           <div class="team-img-wrap">
-            <img class="team-img" src="img/js.jpeg" alt="Josue kitumaini" loading="lazy" />
+            <img class="team-img" src="img/js.jpeg" alt="Josue Kitumaini" loading="lazy" />
             <div class="team-overlay">
               <div class="team-socials">
-                <a href="https://www.instagram.com/davka2.0" class="team-social"><i class="fab fa-instagram"></i></a>
-                <a href="https://github.com/musombokelwa" class="team-social"><i class="fab fa-github"></i></a>
-                <a href="https://www.linkedin.com/in/josu%C3%A9-kitumaini-836215221?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
-                  class="team-social"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://x.com/josue_mus2?s=21" class="team-social"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://www.facebook.com/profile.php?id=100076307891817" class="team-social"><i
-                    class="fab fa-facebook"></i></a>
+                <a href="https://www.linkedin.com/in/josu%C3%A9-kitumaini-836215221" class="team-social"><i
+                    class="fab fa-linkedin-in"></i></a>
+                <a href="https://x.com/josue_mus2" class="team-social"><i class="fab fa-x-twitter"></i></a>
               </div>
             </div>
           </div>
           <div class="team-body">
             <h3>Josue Kitumaini</h3>
             <div class="team-role">Data Scientist</div>
-            <p>Expert en Analyse des Données</p>
-            <div class="team-skills">
-              <span class="team-skill">Python</span>
-              <span class="team-skill">C</span>
-              <span class="team-skill">MySQL</span>
-            </div>
+            <p>Expert en Analyse des Données.</p>
+            <div class="team-skills"><span class="team-skill">Python</span><span class="team-skill">C</span><span
+                class="team-skill">MySQL</span></div>
           </div>
         </div>
-        <div class="team-card reveal delay-4">
+
+        <div class="team-card reveal delay-3">
           <div class="team-img-wrap">
-            <img class="team-img" src="img/jnos.jpeg" alt="Jenos Mby" loading="lazy" />
+            <img class="team-img" src="img/jnos.jpeg" alt="Jenos Mbayo" loading="lazy" />
             <div class="team-overlay">
               <div class="team-socials">
                 <a href="https://www.instagram.com/jenosmby" class="team-social"><i class="fab fa-instagram"></i></a>
@@ -711,170 +759,138 @@
           <div class="team-body">
             <h3>Jenos Mbayo</h3>
             <div class="team-role">Développeur IOT</div>
-            <p>Expert en conception robotique, Concepteur 3D </p>
-            <div class="team-skills">
-              <span class="team-skill">Python</span>
-              <span class="team-skill">C/C++</span>
-              <span class="team-skill">Blender</span>
-            </div>
+            <p>Expert en conception robotique, Concepteur 3D.</p>
+            <div class="team-skills"><span class="team-skill">Python</span><span class="team-skill">C/C++</span><span
+                class="team-skill">Blender</span></div>
           </div>
         </div>
-        <div class="team-card reveal delay-4">
-          <div class="team-img-wrap">
-            <img class="team-img" src="img/nahomie.jpeg" alt="Naomi Kayembe" loading="lazy" />
-            <div class="team-overlay">
-              <div class="team-socials">
-                <a href="https://www.instagram.com/yoshida3.istagram?utm_source=qr&igsh=NW5nbGt1dHhtdmd4"
-                  class="team-social"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@naomiekay727?_r=1&_t=ZS-952XxTkXwe1" class="team-social"><i
-                    class="fab fa-tiktok"></i></a>
-              </div>
-            </div>
-          </div>
-          <div class="team-body">
-            <h3>Naomi Kayembe</h3>
-            <div class="team-role">Développeur Web</div>
-            <p>Développeuse Web creation des applications web</p>
-            <div class="team-skills">
-              <span class="team-skill">Html</span>
-              <span class="team-skill">Css</span>
-              <span class="team-skill">javascript</span>
-            </div>
-          </div>
-        </div>
-        <div class="team-card reveal delay-4">
-          <div class="team-img-wrap">
-            <img class="team-img" src="img/andy.jpeg" alt="Andy Nselele" loading="lazy" />
-            <div class="team-overlay">
-              <div class="team-socials">
-                <a href="" class="team-social"><i class="fab fa-instagram"></i></a>
-                <a href="" class="team-social"><i class="fab fa-github"></i></a>
-              </div>
-            </div>
-          </div>
-          <div class="team-body">
-            <h3>Andy Nselele</h3>
-            <div class="team-role">Développeur Backend & Python</div>
-            <p>Conception d'architectures logicielles performantes, API et bases de données</p>
-            <div class="team-skills">
-              <span class="team-skill">Python</span>
-              <span class="team-skill">C</span>
-              <span class="team-skill">MySQL</span>
-            </div>
-          </div>
-        </div>
-        <div class="team-card reveal delay-4">
+
+
+        <div class="team-card reveal delay-2">
           <div class="team-img-wrap">
             <img class="team-img" src="img/h.jpeg" alt="Honore Mushagalusa" loading="lazy" />
             <div class="team-overlay">
               <div class="team-socials">
-                <a href="https://www.instagram.com/honorescott1?igsh=eG56ajdtbHNjaG1i" class="team-social"><i
+                <a href="https://www.instagram.com/honorescott1" class="team-social"><i
                     class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@honorescott4?_r=1&_t=ZS-95noh54dr0O" class="team-social"><i
-                    class="fab fa-tiktok"></i></a>
                 <a href="https://www.facebook.com/honore.romeon" class="team-social"><i
                     class="fab fa-facebook-f"></i></a>
-
               </div>
             </div>
           </div>
           <div class="team-body">
             <h3>Honore Mushagalusa</h3>
             <div class="team-role">Développeur IOT</div>
-            <p>Expert en réalisations des systèmes embarqués</p>
-            <div class="team-skills">
-              <span class="team-skill">Arduino IDE</span>
-              <span class="team-skill">C/C++</span>
-              <span class="team-skill">Proteus</span>
-            </div>
+            <p>Expert en réalisations des systèmes embarqués.</p>
+            <div class="team-skills"><span class="team-skill">Arduino</span><span class="team-skill">C/C++</span><span
+                class="team-skill">Proteus</span></div>
           </div>
         </div>
 
-        <div class="team-card reveal delay-4">
+        <div class="team-card reveal delay-3">
           <div class="team-img-wrap">
-            <img class="team-img" src="img/junior .jpeg" alt="Honore Mushagalusa" loading="lazy" />
+            <img class="team-img" src="img/junior .jpeg" alt="Junior Katende" loading="lazy" />
             <div class="team-overlay">
               <div class="team-socials">
-                <a href="https://www.instagram.com/junior_katende_officiel?igsh=cTA5M2I3eXpsM2Fk" class="team-social"><i
+                <a href="https://www.instagram.com/junior_katende_officiel" class="team-social"><i
                     class="fab fa-instagram"></i></a>
                 <a href="https://www.facebook.com/juniorjkbjr" class="team-social"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.threads.com/@junior_katende_officiel" class="team-social"><i
-                    class="fab fa-threads"></i></a>
-                <a href="https://www.tiktok.com/@junior.katendejun?_r=1&_t=ZS-95nowacVFIH" class="team-social"><i
-                    class="fab fa-tiktok"></i></a>
-                <a href="https://github.com/katendejunior976-bot" class="team-social"><i class="fab fa-github"></i></a>
-
               </div>
             </div>
           </div>
           <div class="team-body">
             <h3>Junior Katende</h3>
-            <div class="team-role">Data analyst et  Createurs des contenus</div>
-            <p>Expert en traitement des données et réalisation des contenus mediatiques</p>
-            <div class="team-skills">
-              <span class="team-skill">Python</span>
-              <span class="team-skill">SQL</span>
-              <span class="team-skill">Wordpress</span>
-            </div>
+            <div class="team-role">Développeur Web</div>
+            <p>Développeur web passionné par les nouvelles technologies.</p>
+            <div class="team-skills"><span class="team-skill">Html</span><span class="team-skill">Css</span><span
+                class="team-skill">JavaScript</span></div>
           </div>
         </div>
-        <div class="team-card reveal delay-4">
-          <div class="team-img-wrap">
-            <img class="team-img" src="img/jeph.jpeg" alt="Jephte Kahozi" loading="lazy" />
-            <div class="team-overlay">
-              <div class="team-socials">
-                <a href="https://www.instagram.com/mr_jeph_kahozi_" class="team-social"><i
-                    class="fab fa-instagram"></i></a>
-              </div>
-            </div>
-          </div>
-          <div class="team-body">
-            <h3>Jephte Kahozi</h3>
-            <div class="team-role">Community Manager</div>
-            <p>Maitre en relation publique et Marketing digital et resotage</p>
-            <div class="team-skills">
-              <span class="team-skill">Relations Publiques</span>
-              <span class="team-skill">Marketing digital</span>
-            </div>
-          </div>
-        </div>
+
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section style="background:var(--secondary);padding:80px 0">
-    <div class="container" style="text-align:center">
-      <div class="reveal">
-        <div class="section-badge" style="justify-content:center"><i class="fas fa-handshake"></i> Rejoignez-nous</div>
-        <h2 style="font-size:clamp(1.8rem,4vw,3rem);font-weight:900;margin-bottom:20px">
-          Travaillons <span class="gradient-text">ensemble</span>
-        </h2>
-        <p
-          style="color:var(--gray);font-size:1.05rem;margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto">
-          Vous avez un projet en tête ? Notre équipe est prête à vous accompagner de l'idée à la réalisation.
-        </p>
-        <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center">
-          <a href="contact.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Contactez-nous</a>
-          <a href="services.html" class="btn btn-secondary"><i class="fas fa-layer-group"></i> Nos services</a>
+  <section class="cta-section" style="padding:100px 0;">
+    <div class="container">
+      <div class="cta-inner reveal">
+        <div class="section-tag" style="margin:0 auto 20px;display:inline-flex;"><i class="fas fa-rocket"></i>
+          Rejoignez-nous</div>
+        <h2>Prêt à démarrer votre <span class="gradient-text">projet digital</span> ?</h2>
+        <p>Contactez-nous dès maintenant et obtenez un devis gratuit sous 24h.</p>
+        <div class="cta-actions">
+          <a href="contact.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Demander un devis</a>
+          <a href="https://wa.me/243970037759" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i>
+            WhatsApp</a>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo" style="margin-bottom:18px;">CODEUR&nbsp;<span
+              class="logo-x">X</span></a>
+          <p>Votre partenaire tech de confiance. Solutions digitales performantes pour propulser votre activité.</p>
+          <div class="footer-socials">
+            <a href="https://www.facebook.com/profile.php?id=61570772911684" target="_blank" rel="noopener"
+              class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.tiktok.com/@codeur.x1?_r=1&_t=ZS-95mpoXJuXHV" target="_blank" rel="noopener"
+              class="social-btn" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/codeurxofficiel?igsh=aXc1eXVkdDEwazN4" target="_blank" rel="noopener"
+              class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/243970037759" target="_blank" rel="noopener" class="social-btn"
+              aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html"><i class="fas fa-chevron-right"></i> Sites Web</a></li>
+            <li><a href="services.html"><i class="fas fa-chevron-right"></i> Applications Mobiles</a></li>
+            <li><a href="services.html"><i class="fas fa-chevron-right"></i> UI/UX Design</a></li>
+            <li><a href="services.html"><i class="fas fa-chevron-right"></i> Systèmes Embarqués</a></li>
+            <li><a href="services.html"><i class="fas fa-chevron-right"></i> Hébergement Web</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+            <li><a href="about.html"><i class="fas fa-chevron-right"></i> À Propos</a></li>
+            <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+            <li><a href="portfolio.html"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
+            <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="footer-contact-item">
+            <div class="icon"><i class="fab fa-whatsapp"></i></div><span>+243 970 037 759</span>
+          </div>
+          <div class="footer-contact-item">
+            <div class="icon"><i class="fas fa-envelope"></i></div><span>codeurx66@gmail.com</span>
+          </div>
+          <div class="footer-contact-item">
+            <div class="icon"><i class="fas fa-map-marker-alt"></i></div><span>Kinshasa, RD Congo</span>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="footerYear">2026</span> <span>CODEUR X</span>. Tous droits réservés.</p>
+        <p>Conçu avec <span style="color:var(--teal)">♥</span> par l'équipe CODEUR X</p>
+      </div>
+    </div>
+  </footer>
 
-  <!-- WhatsApp Float -->
   <a href="https://wa.me/243970037759" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <i class="fab fa-whatsapp"></i>
-    <span class="tooltip">Contactez-nous sur WhatsApp</span>
+    <i class="fab fa-whatsapp"></i><span class="tooltip">Contactez-nous sur WhatsApp</span>
   </a>
-
-  <!-- Scroll to top -->
-  <button class="scroll-top" id="scrollTop" aria-label="Retour en haut">
-    <i class="fas fa-chevron-up"></i>
-  </button>
-
-  <!-- Toast -->
+  <button class="scroll-top" id="scrollTop" aria-label="Retour en haut"><i class="fas fa-chevron-up"></i></button>
   <div class="toast" id="toast">
     <div class="toast-content">
       <div class="toast-icon"><i class="fas fa-check"></i></div>

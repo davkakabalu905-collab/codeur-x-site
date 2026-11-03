@@ -1,312 +1,43 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <meta content="Codeur X" name="keywords">
-  <meta name="description"
-    content="Groupe de développeurs informatiques professionnels. Sites web, applications mobiles, UI/UX design et solutions digitales." />
-  <title>Portfolio — CODEUR X | Votre vision, notre code</title>
+  <meta name="description" content="Découvrez les réalisations digitales de CODEUR X : sites web, applications mobiles, dashboards et prototypes IoT." />
+  <title>Portfolio — CODEUR X | Vos Projets, Notre Code</title>
+  <link href="img/cx-4.png" rel="icon" />
+  
+  <script>
+    (function(){
+      const t = localStorage.getItem('cx-theme') || 
+        (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
 
-  <link href="img/WhatsApp Image 2026-03-25 at 14.32.51.jpeg" rel="icon">
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@400;700&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="css/style.css" />
-  <style>
-    /* ---- PORTFOLIO CARD ---- */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .p-card {
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      cursor: pointer;
-      box-shadow: var(--glass-shadow);
-      transition: var(--transition);
-    }
-
-    .p-card:hover {
-      background: var(--glass-bg-hover);
-      border-color: var(--glass-border-hover);
-      transform: translateY(-8px);
-      box-shadow: var(--glass-shadow-hover);
-    }
-
-    .p-card-img-wrap {
-      position: relative;
-      overflow: hidden;
-      height: 220px;
-    }
-
-    .p-card-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .p-card:hover .p-card-img {
-      transform: scale(1.12);
-    }
-
-    .p-card-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.75);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      opacity: 0;
-      transition: var(--transition);
-      backdrop-filter: blur(4px);
-    }
-
-    .p-card:hover .p-card-overlay {
-      opacity: 1;
-    }
-
-    .p-overlay-btn {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      color: var(--white);
-      transition: var(--transition);
-      transform: scale(0.8) translateY(10px);
-    }
-
-    .p-card:hover .p-overlay-btn {
-      transform: scale(1) translateY(0);
-    }
-
-    .p-overlay-btn.view {
-      background: var(--accent);
-      transition-delay: 0.05s;
-    }
-
-    .p-overlay-btn.link {
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
-      transition-delay: 0.1s;
-    }
-
-    .p-overlay-btn:hover {
-      transform: scale(1.1) !important;
-    }
-
-    .p-card-body {
-      padding: 20px 22px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.16) 100%);
-      backdrop-filter: blur(28px) saturate(210%);
-      -webkit-backdrop-filter: blur(28px) saturate(210%);
-      border-top: 1px solid rgba(255, 255, 255, 0.75);
-      box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.95);
-      position: relative;
-      z-index: 1;
-      transition: var(--transition);
-    }
-
-    .p-card:hover .p-card-body {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.58) 0%, rgba(255, 255, 255, 0.28) 100%);
-    }
-
-    .p-cat {
-      font-size: 0.7rem;
-      font-weight: 700;
-      color: var(--accent2);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 6px;
-    }
-
-    .p-card-body h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      transition: var(--transition);
-    }
-
-    .p-card:hover h3 {
-      color: var(--accent);
-    }
-
-    .p-card-body p {
-      font-size: 0.82rem;
-      color: var(--gray);
-      line-height: 1.6;
-      margin-bottom: 14px;
-    }
-
-    .p-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .p-tag {
-      padding: 3px 10px;
-      background: rgba(14, 154, 152, 0.15);
-      border: 1px solid var(--border-accent);
-      border-radius: 4px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--cyan);
-    }
-
-    .p-card-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 22px;
-    }
-
-    .p-client {
-      font-size: 0.78rem;
-      color: var(--gray);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .p-client i {
-      color: var(--cyan);
-    }
-
-    .p-year {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--gray);
-    }
-
-    /* ---- MODAL PROJECT ---- */
-    .modal-project-img {
-      width: 100%;
-      height: 320px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 24px;
-    }
-
-    .modal-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 16px 0;
-    }
-
-    .modal-tag {
-      padding: 5px 14px;
-      background: rgba(14, 154, 152, 0.15);
-      border: 1px solid var(--border-accent);
-      border-radius: 50px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--cyan);
-    }
-
-    .modal-meta {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin: 20px 0;
-      padding: 20px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.18) 100%);
-      backdrop-filter: blur(24px) saturate(210%);
-      -webkit-backdrop-filter: blur(24px) saturate(210%);
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      box-shadow: 0 4px 16px rgba(11, 42, 91, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.95);
-    }
-
-    .modal-meta-item {
-      text-align: center;
-    }
-
-    .modal-meta-item .label {
-      font-size: 0.72rem;
-      color: var(--gray);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 4px;
-    }
-
-    .modal-meta-item .value {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--accent);
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      .portfolio-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 600px) {
-      .portfolio-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .modal-meta {
-        grid-template-columns: 1fr;
-        padding: 15px;
-      }
-
-      .page-header h1 {
-        font-size: 2.2rem;
-      }
-
-      .filter-tab {
-        padding: 8px 15px;
-        font-size: 0.75rem;
-      }
-    }
-  </style>
 </head>
-
 <body>
 
-  <div class="page-loader" id="pageLoader">
-    <div class="loader-3d-wrapper">
-      <div class="loader-3d-aura"></div>
-      <div class="loader-3d-logo">
-        <img src="img/cx-4.png" alt="Logo CODEUR X" class="loader-3d-img" />
-        <div class="loader-3d-shine"></div>
-      </div>
-      <div class="loader-3d-shadow"></div>
-    </div>
-    <div class="loader-bar">
-      <div class="loader-progress"></div>
-    </div>
-  </div>
+  <!-- Scroll Progress -->
+  <div id="scrollProgress"></div>
 
+  <!-- Mobile Nav Overlay -->
   <div class="nav-overlay" id="navOverlay"></div>
 
-  <!-- NAVBAR -->
-  <nav class="navbar scrolled" id="navbar">
+  <!-- =====================
+       NAVBAR
+       ===================== -->
+  <nav class="navbar" id="navbar">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo" aria-label="CODEUR X Accueil">
-        <span class="logo-text">CODEUR <span class="logo-x">X</span></span>
+        CODEUR&nbsp;<span class="logo-x">X</span>
       </a>
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+
       <ul class="nav-menu" id="navMenu">
         <li><a href="index.html" class="nav-link">Accueil</a></li>
         <li><a href="about.html" class="nav-link">À Propos</a></li>
@@ -314,105 +45,244 @@
         <li><a href="portfolio.html" class="nav-link active">Portfolio</a></li>
         <li><a href="contact.html" class="nav-cta">Nous Contacter</a></li>
       </ul>
+
+      <div class="nav-actions">
+        <button id="themeToggle" class="theme-toggle" aria-label="Changer de thème" title="Basculer Mode Clair / Sombre">
+          <i class="fas fa-moon theme-icon-dark"></i>
+          <i class="fas fa-sun theme-icon-light"></i>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
-  <!-- PAGE HEADER -->
-  <div class="page-header">
-    <div class="particles-bg"></div>
-    <!-- Cercles décoratifs de marque -->
-    <div style="position:absolute;top:25px;right:40px;pointer-events:none;opacity:0.8;">
-      <div
-        style="width:40px;height:40px;border-radius:50%;background:var(--teal);box-shadow:0 4px 15px var(--accent-glow);">
-      </div>
-      <div
-        style="width:28px;height:28px;border-radius:50%;background:var(--cyan);position:absolute;bottom:-10px;right:-10px;box-shadow:0 4px 15px var(--accent2-glow);">
-      </div>
+  <!-- =====================
+       PAGE HEADER
+       ===================== -->
+  <header class="page-header">
+    <div class="page-header-grid"></div>
+    <div class="container" style="position:relative;z-index:1;">
+      <div class="section-tag"><i class="fas fa-briefcase"></i> Nos Réalisations</div>
+      <h1>Des projets qui <span class="gradient-text">font la différence</span></h1>
+      <p>Explorez nos applications, sites web, plateformes et dashboards conçus avec rigueur technique et créativité visuelle.</p>
     </div>
-    <div class="page-header-badge"><i class="fas fa-folder-open"></i> Votre vision, notre code</div>
-    <h1>Notre Portfolio & <span class="keyword-teal">Réalisations</span></h1>
-    <p>Découvrez une sélection de nos meilleurs projets digitaux conçus sur mesure pour propulser l'activité de nos
-      partenaires.</p>
-  </div>
+  </header>
 
-  <!-- PORTFOLIO -->
-  <section>
+  <!-- =====================
+       PORTFOLIO SECTION
+       ===================== -->
+  <section style="background:var(--bg-base);padding:70px 0 110px;">
     <div class="container">
-      <!-- Filter -->
-      <div class="filter-wrapper"
-        style="display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-bottom:50px">
+
+      <!-- Filter Tabs -->
+      <div class="filter-wrapper reveal" style="display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-bottom:50px;">
         <button class="filter-tab active" data-filter="all">Tous les projets</button>
+        <button class="filter-tab" data-filter="dashboard">Dashboards</button>
         <button class="filter-tab" data-filter="web">Sites Web</button>
-        <button class="filter-tab" data-filter="mobile">Mobile</button>
+        <button class="filter-tab" data-filter="mobile">Applications Mobile</button>
         <button class="filter-tab" data-filter="design">UI/UX Design</button>
-        <button class="filter-tab" data-filter="ecommerce">E-Commerce</button>
-        <button class="filter-tab" data-filter="dashboard">Dashboard</button>
+        <button class="filter-tab" data-filter="iot">IoT &amp; Embarqué</button>
       </div>
 
-      <!-- Grid -->
-      <div class="portfolio-grid filterable-grid" id="portfolioGrid">
+      <!-- Projects Grid -->
+      <div class="portfolio-grid filterable-grid">
 
-        <!-- Project 1 -->
-        <div class="p-card reveal delay-1" data-category="dashboard" data-project="2">
+        <!-- Project 1: Malaria Dashboard -->
+        <article class="p-card reveal" data-category="dashboard">
           <div class="p-card-img-wrap">
-            <img class="p-card-img" src="img/malaria .jpeg" alt="Diagnosis of malaria" loading="lazy" />
+            <img src="img/malaria.jpeg" alt="Malaria Analytics Dashboard" class="p-card-img" loading="lazy" onerror="this.src='images/data.jpg'" />
+            <div class="p-card-overlay">
+              <a href="img/malaria.jpeg" target="_blank" class="p-overlay-btn" aria-label="Agrandir l'image"><i class="fas fa-eye"></i></a>
+              <a href="contact.html" class="p-overlay-btn" aria-label="Demander un projet similaire"><i class="fas fa-arrow-right"></i></a>
+            </div>
           </div>
           <div class="p-card-body">
-            <div class="p-cat">DASHBOARD MÉDICAL</div>
-            <h3>Diagnosis of malaria</h3>
-            <p>Plateforme Médicale d'Analyse et de Suivi Clinique du Paludisme</p>
+            <div class="p-cat">Santé · Dashboard</div>
+            <h3>Malaria Analytics Platform</h3>
+            <p>Tableau de bord interactif de suivi épidémiologique, visualisation cartographique et alertes prédictives sur les foyers de paludisme.</p>
+            <div class="p-tags">
+              <span class="p-tag">Data Viz</span>
+              <span class="p-tag">Python</span>
+              <span class="p-tag">React</span>
+              <span class="p-tag">Cartographie</span>
+            </div>
           </div>
-        </div>
+        </article>
 
-        <!-- Project 2 -->
-        <div class="p-card reveal delay-2" data-category="dashboard" data-project="1">
+        <!-- Project 2: Health Diagnosis System -->
+        <article class="p-card reveal" data-category="dashboard">
           <div class="p-card-img-wrap">
-            <img class="p-card-img" src="img/IMG-20260310-WA0003.jpg" alt="Smart Agriculture" loading="lazy" />
+            <img src="img/IMG-20260310-WA0003.jpg" alt="Système Médical & BI" class="p-card-img" loading="lazy" onerror="this.src='images/digital.jpg'" />
+            <div class="p-card-overlay">
+              <a href="img/IMG-20260310-WA0003.jpg" target="_blank" class="p-overlay-btn" aria-label="Agrandir"><i class="fas fa-eye"></i></a>
+              <a href="contact.html" class="p-overlay-btn" aria-label="Projet similaire"><i class="fas fa-arrow-right"></i></a>
+            </div>
           </div>
           <div class="p-card-body">
-            <div class="p-cat">DASHBOARD</div>
-            <h3>Smart Agriculture</h3>
-            <p>Système de Controle de Production Agricole</p>
+            <div class="p-cat">Medical Tech · BI</div>
+            <h3>Système de Suivi &amp; Diagnostic</h3>
+            <p>Solution décisionnelle pour cliniques et hôpitaux permettant la centralisation des dossiers patients, analyses de constantes et KPI médicaux.</p>
+            <div class="p-tags">
+              <span class="p-tag">Dashboard</span>
+              <span class="p-tag">Business Intelligence</span>
+              <span class="p-tag">API Sécurisée</span>
+            </div>
           </div>
-        </div>
+        </article>
 
-        <!-- Project 3 -->
-        <div class="p-card reveal delay-3" data-category="web" data-project="3">
+        <!-- Project 3: Congo Tourisme -->
+        <article class="p-card reveal" data-category="web">
           <div class="p-card-img-wrap">
-            <img class="p-card-img" src="img/CONGO T.jpeg" alt="Congo tourisme" loading="lazy" />
+            <img src="img/CONGO T.jpeg" alt="Congo Tourisme Web" class="p-card-img" loading="lazy" onerror="this.src='images/web-dev.jpg'" />
+            <div class="p-card-overlay">
+              <a href="img/CONGO T.jpeg" target="_blank" class="p-overlay-btn" aria-label="Agrandir"><i class="fas fa-eye"></i></a>
+              <a href="contact.html" class="p-overlay-btn" aria-label="Projet similaire"><i class="fas fa-arrow-right"></i></a>
+            </div>
           </div>
           <div class="p-card-body">
-            <div class="p-cat">PLATEFORME WEB</div>
-            <h3>Congo tourisme</h3>
-            <p>Plateforme de guide Touristique du Congo</p>
+            <div class="p-cat">Web · Tourisme</div>
+            <h3>Congo Tourisme &amp; Découverte</h3>
+            <p>Portail immersif valorisant le patrimoine, les parcs nationaux et la culture congolaise avec réservation en ligne et carte interactive.</p>
+            <div class="p-tags">
+              <span class="p-tag">Web Design</span>
+              <span class="p-tag">SEO</span>
+              <span class="p-tag">PWA</span>
+              <span class="p-tag">Stripe / Mobile Money</span>
+            </div>
           </div>
-        </div>
+        </article>
+
+        <!-- Project 4: Mobile FinTech App -->
+        <article class="p-card reveal" data-category="mobile">
+          <div class="p-card-img-wrap">
+            <img src="img/App.jpg" alt="Application FinTech Mobile" class="p-card-img" loading="lazy" />
+            <div class="p-card-overlay">
+              <a href="contact.html" class="p-overlay-btn" aria-label="Demander une démo"><i class="fas fa-paper-plane"></i></a>
+            </div>
+          </div>
+          <div class="p-card-body">
+            <div class="p-cat">FinTech · Mobile</div>
+            <h3>X-Pay Mobile Banking</h3>
+            <p>Application bancaire cross-platform rapide et sécurisée, compatible Mobile Money (M-Pesa, Airtel Money, Orange Money) et cartes bancaires.</p>
+            <div class="p-tags">
+              <span class="p-tag">Flutter</span>
+              <span class="p-tag">Mobile Money</span>
+              <span class="p-tag">Biométrie</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 5: Modern SaaS UI/UX -->
+        <article class="p-card reveal" data-category="design">
+          <div class="p-card-img-wrap">
+            <img src="img/Ux.jpg" alt="UI/UX Design Platform" class="p-card-img" loading="lazy" />
+            <div class="p-card-overlay">
+              <a href="contact.html" class="p-overlay-btn" aria-label="Voir le design"><i class="fas fa-palette"></i></a>
+            </div>
+          </div>
+          <div class="p-card-body">
+            <div class="p-cat">Design System · Figma</div>
+            <h3>Design System &amp; SaaS Interface</h3>
+            <p>Conception complète de l'expérience utilisateur, charte graphique dark/light et composants UI réutilisables pour plateforme SaaS B2B.</p>
+            <div class="p-tags">
+              <span class="p-tag">Figma</span>
+              <span class="p-tag">Design System</span>
+              <span class="p-tag">Dark/Light Mode</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 6: Smart Agriculture IoT -->
+        <article class="p-card reveal" data-category="iot">
+          <div class="p-card-img-wrap">
+            <img src="img/Smart Agriculture-Couverture_LE_upscale_prime.jpg" alt="Système Embarqué IoT" class="p-card-img" loading="lazy" />
+            <div class="p-card-overlay">
+              <a href="contact.html" class="p-overlay-btn" aria-label="Découvrir"><i class="fas fa-microchip"></i></a>
+            </div>
+          </div>
+          <div class="p-card-body">
+            <div class="p-cat">IoT · Embarqué</div>
+            <h3>AgriSense Smart Irrigation</h3>
+            <p>Réseau de capteurs d'humidité et de température connectés par LoRaWAN pour l'automatisation de l'arrosage agricole en temps réel.</p>
+            <div class="p-tags">
+              <span class="p-tag">ESP32</span>
+              <span class="p-tag">MQTT</span>
+              <span class="p-tag">C++ Firmware</span>
+              <span class="p-tag">Telemetry</span>
+            </div>
+          </div>
+        </article>
 
       </div>
     </div>
   </section>
 
-
-  <!-- CTA -->
-  <section style="padding:80px 0">
-    <div class="container" style="text-align:center">
-      <div class="reveal">
-        <div class="section-badge" style="justify-content:center"><i class="fas fa-rocket"></i> Votre Projet</div>
-        <h2 style="font-size:clamp(1.8rem,4vw,3rem);font-weight:900;margin-bottom:20px">
-          Votre projet sera le <span class="gradient-text">prochain</span> !
-        </h2>
-        <p
-          style="color:var(--gray);font-size:1.05rem;margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto">
-          Rejoignez nos clients satisfaits et lancez votre projet digital avec CODEUR X.
-        </p>
-        <div style="display:flex;flex-wrap:wrap;gap:16px;justify-content:center">
-          <a href="contact.html" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Démarrer mon projet</a>
-          <a href="https://wa.me/NUMERO" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i>
-            WhatsApp</a>
-        </div>
+  <!-- =====================
+       CTA SECTION
+       ===================== -->
+  <section class="cta-section">
+    <div class="container cta-inner reveal">
+      <div class="cta-badge"><span class="dot-pulse"></span> Votre vision, notre code</div>
+      <h2>Vous avez un projet en tête&nbsp;?<br/><span class="gradient-text">Donnons-lui vie ensemble</span></h2>
+      <p>Nos ingénieurs et designers transforment votre idée en un produit digital performant et élégant.</p>
+      <div class="cta-actions">
+        <a href="contact.html" class="btn btn-primary btn-lg"><i class="fas fa-paper-plane"></i> Demander un devis</a>
+        <a href="https://wa.me/243970037759" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg"><i class="fab fa-whatsapp"></i> Échanger sur WhatsApp</a>
       </div>
     </div>
   </section>
+
+  <!-- =====================
+       FOOTER
+       ===================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo" style="margin-bottom:18px;">CODEUR&nbsp;<span class="logo-x">X</span></a>
+          <p>Votre partenaire tech de confiance. Nous créons des solutions digitales performantes pour propulser votre activité vers le futur.</p>
+          <div class="footer-socials">
+            <a href="https://www.facebook.com/profile.php?id=61570772911684" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.tiktok.com/@codeur.x1?_r=1&_t=ZS-95mpoXJuXHV" target="_blank" rel="noopener" class="social-btn" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/codeurxofficiel?igsh=aXc1eXVkdDEwazN4" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/243970037759" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="services.html"><i class="fas fa-chevron-right"></i> Sites Web</a></li>
+            <li><a href="services.html"><i class="fas fa-chevron-right"></i> Applications Mobiles</a></li>
+            <li><a href="services.html"><i class="fas fa-chevron-right"></i> UI/UX Design</a></li>
+            <li><a href="services.html"><i class="fas fa-chevron-right"></i> Systèmes Embarqués</a></li>
+            <li><a href="services.html"><i class="fas fa-chevron-right"></i> Hébergement Web</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+            <li><a href="about.html"><i class="fas fa-chevron-right"></i> À Propos</a></li>
+            <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+            <li><a href="portfolio.html"><i class="fas fa-chevron-right"></i> Portfolio</a></li>
+            <li><a href="contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <div class="footer-contact-item"><div class="icon"><i class="fab fa-whatsapp"></i></div><span>+243 970 037 759</span></div>
+          <div class="footer-contact-item"><div class="icon"><i class="fas fa-envelope"></i></div><span>codeurx66@gmail.com</span></div>
+          <div class="footer-contact-item"><div class="icon"><i class="fas fa-map-marker-alt"></i></div><span>Kinshasa, RD Congo</span></div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="footerYear">2026</span> <span>CODEUR X</span>. Tous droits réservés.</p>
+        <p>Conçu avec <span style="color:var(--teal)">♥</span> par l'équipe CODEUR X</p>
+      </div>
+    </div>
+  </footer>
 
   <!-- WhatsApp Float -->
   <a href="https://wa.me/243970037759" class="whatsapp-float" target="_blank" rel="noopener" aria-label="WhatsApp">
@@ -431,12 +301,11 @@
       <div class="toast-icon"><i class="fas fa-check"></i></div>
       <div class="toast-text">
         <h5>Succès</h5>
-        <p>Message envoyé avec succès</p>
+        <p>Message</p>
       </div>
     </div>
   </div>
 
   <script src="js/script.js"></script>
 </body>
-
 </html>
