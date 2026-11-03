@@ -446,6 +446,11 @@ button {
   color: #eab308;
 }
 
+/* Nav theme item (hidden on desktop, active in hamburger on mobile) */
+.nav-theme-item {
+  display: none;
+}
+
 /* Hamburger */
 .hamburger {
   display: none;
@@ -1992,6 +1997,69 @@ footer {
     width: 100%;
     padding: 12px 16px;
     margin: 0;
+  }
+
+  /* Sur mobile : masquer le bouton thème de la barre supérieure */
+  .desktop-theme-btn {
+    display: none !important;
+  }
+
+  /* Sur mobile : afficher le sélecteur de thème dans le menu hamburger */
+  .nav-theme-item {
+    display: block;
+    width: 100%;
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  .mobile-theme-btn {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: var(--radius);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text-primary);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .mobile-theme-btn:hover {
+    border-color: var(--border-hover);
+    background: var(--teal-dim);
+  }
+
+  .mobile-theme-btn .theme-btn-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .mobile-theme-btn .theme-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+  }
+
+  .mobile-theme-btn .theme-icons-box {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-size: 0.95rem;
   }
 
   .hamburger { display: flex; }
