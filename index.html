@@ -101,12 +101,22 @@
        HERO SECTION
        ===================== -->
   <section class="hero" id="home">
-    <video class="hero-video" src="video/video1.mp4" autoplay muted loop playsinline
-      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></video>
-    <video class="hero-video" src="video/multimedia.mp4" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;mix-blend-mode:screen;"></video>
+    <video id="heroVideo" class="hero-video" src="video/video1.mp4" autoplay muted playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></video>
+    <script>
+      const heroVideo = document.getElementById('heroVideo');
+      const secondSrc = 'video/multimedia.mp4';
+      heroVideo.addEventListener('ended', () => {
+        if (heroVideo.dataset.switched) return;
+        heroVideo.src = secondSrc;
+        heroVideo.loop = false;
+        heroVideo.play();
+        heroVideo.dataset.switched = 'true';
+      });
+    </script>
     <div class="hero-content container">
       <div class="hero-inner">
-        <h1 class="hero-title hero-title-center">Découvrez nos services</h1>
+        <h1 class="hero-title hero-title-center">CODEUR X</h1>
+        <p>Du code qui raconte, des images qui convainquent.</p>
         <div class="hero-actions hero-actions-bottom">
           <a href="services.html" class="btn btn-primary"><i class="fas fa-rocket"></i> Découvrir nos services</a>
           <a href="contact.html" class="btn btn-secondary"><i class="fas fa-paper-plane"></i> Nous contacter</a>
