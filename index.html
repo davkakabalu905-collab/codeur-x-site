@@ -95,99 +95,18 @@
        HERO SECTION
        ===================== -->
   <section class="hero" id="home">
-    <!-- Canvas: particles + grid -->
-    <canvas id="hero-canvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;"></canvas>
-
+    <video class="hero-video" src="video/services.mp4" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></video>
     <div class="hero-content container">
       <div class="hero-inner">
-
-        <!-- Text Column -->
-        <div class="hero-text" style="animation: fadeInLeft 0.9s ease both;">
-          <div class="hero-eyebrow">
-            <span class="hero-badge">
-              <span class="dot"></span> Disponible pour vos projets
-            </span>
-          </div>
-
-          <h1 class="hero-title">
-            Nous codons
-            <span class="brand-name gradient-text">le Futur Digital</span>
-          </h1>
-
-          <div class="hero-typed-wrap">
-            <span class="prefix">&gt;&nbsp;</span>
-            <span id="typedText"
-              data-texts="Développement Web|Applications Mobiles|Optimisation SEO|UI/UX Design|Systèmes Embarqués|Réseaux Informatique|API &amp; Backend">
-            </span>
-            <span class="cursor"></span>
-          </div>
-
-          <p class="hero-desc">
-            <strong>Votre vision, notre code.</strong> CODEUR X est un groupe de développeurs et concepteurs digitaux
-            passionnés. Nous donnons vie à vos idées avec des solutions performantes, sécurisées et sur mesure.
-          </p>
-
-          <div class="hero-actions">
-            <a href="services.html" class="btn btn-primary">
-              <i class="fas fa-rocket"></i> Voir nos services
-            </a>
-            <a href="contact.html" class="btn btn-secondary">
-              <i class="fas fa-paper-plane"></i> Nous contacter
-            </a>
-          </div>
-
-          <div class="hero-stats">
-            <div class="hero-stat-item">
-              <div class="hero-stat-num">150+</div>
-              <div class="hero-stat-label">Projets Livrés</div>
-            </div>
-            <div class="hero-stat-item">
-              <div class="hero-stat-num">97%</div>
-              <div class="hero-stat-label">Satisfaction</div>
-            </div>
-            <div class="hero-stat-item">
-              <div class="hero-stat-num">2+</div>
-              <div class="hero-stat-label">Ans d'expertise</div>
-            </div>
-          </div>
+        <h1 class="hero-title">Découvrez nos services</h1>
+        <p class="hero-desc">Explorez notre gamme de services innovants pour transformer vos projets digitaux.</p>
+        <div class="hero-actions">
+          <a href="services.html" class="btn btn-primary"><i class="fas fa-rocket"></i> Voir nos services</a>
+          <a href="contact.html" class="btn btn-secondary"><i class="fas fa-paper-plane"></i> Nous contacter</a>
         </div>
-
-        <!-- Visual Column — Code Window -->
-        <div class="hero-visual">
-          <div class="floating-tags" style="position:absolute;width:100%;height:100%;pointer-events:none;">
-            <div class="ftag"><i class="fab fa-react"></i> React.js</div>
-            <div class="ftag"><i class="fab fa-node-js"></i> Node.js</div>
-            <div class="ftag"><i class="fas fa-database"></i> MySQL</div>
-          </div>
-
-          <div class="code-window">
-            <div class="code-window-header">
-              <div class="code-dot red"></div>
-              <div class="code-dot yellow"></div>
-              <div class="code-dot green"></div>
-              <span class="code-title">codeurx.js</span>
-            </div>
-            <div class="code-body">
-              <div class="code-line"><span class="line-num">1</span><span><span class="code-kw">const</span> <span class="code-fn">CodeurX</span> = <span class="code-br">{</span></span></div>
-              <div class="code-line"><span class="line-num">2</span><span>&nbsp;&nbsp;<span class="code-prop">mission</span><span class="code-op">:</span> <span class="code-str">"Votre vision, notre code"</span><span class="code-op">,</span></span></div>
-              <div class="code-line"><span class="line-num">3</span><span>&nbsp;&nbsp;<span class="code-prop">skills</span><span class="code-op">:</span> <span class="code-br">[</span><span class="code-str">"Web"</span><span class="code-op">,</span> <span class="code-str">"Mobile"</span><span class="code-op">,</span> <span class="code-str">"UI/UX"</span><span class="code-br">]</span><span class="code-op">,</span></span></div>
-              <div class="code-line"><span class="line-num">4</span><span>&nbsp;&nbsp;<span class="code-prop">team</span><span class="code-op">:</span> <span class="code-val">10</span> <span class="code-cm">// passionnés</span></span></div>
-              <div class="code-line"><span class="line-num">5</span><span><span class="code-br">}</span><span class="code-op">;</span></span></div>
-              <div class="code-line"><span class="line-num">6</span><span></span></div>
-              <div class="code-line"><span class="line-num">7</span><span><span class="code-kw">async function</span> <span class="code-fn">buildYourProject</span><span class="code-br">(</span><span class="code-prop">idea</span><span class="code-br">)</span> <span class="code-br">{</span></span></div>
-              <div class="code-line"><span class="line-num">8</span><span>&nbsp;&nbsp;<span class="code-kw">const</span> result <span class="code-op">=</span> <span class="code-kw">await</span> <span class="code-fn">CodeurX</span><span class="code-op">.</span><span class="code-fn">develop</span><span class="code-br">(</span>idea<span class="code-br">)</span><span class="code-op">;</span></span></div>
-              <div class="code-line"><span class="line-num">9</span><span>&nbsp;&nbsp;<span class="code-kw">return</span> <span class="code-br">{</span> <span class="code-prop">success</span><span class="code-op">:</span> <span class="code-val">true</span><span class="code-op">,</span> result <span class="code-br">}</span><span class="code-op">;</span></span></div>
-              <div class="code-line"><span class="line-num">10</span><span><span class="code-br">}</span></span></div>
-              <div class="code-line"><span class="line-num">11</span><span></span></div>
-              <div class="code-line"><span class="line-num">12</span><span><span class="code-cm">// 🚀 Prêt à coder votre avenir ?</span></span></div>
-              <div class="code-line"><span class="line-num">13</span><span><span class="code-fn">buildYourProject</span><span class="code-br">(</span><span class="code-str">"votre_idée"</span><span class="code-br">)</span><span class="code-op">;</span></span></div>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
-  </section>
+</section>
 
   <!-- =====================
        STATS SECTION
