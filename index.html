@@ -101,18 +101,77 @@
        HERO SECTION
        ===================== -->
   <section class="hero" id="home">
-    <video id="heroVideo" class="hero-video" src="video/video2.mp4" autoplay muted playsinline
-      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;"></video>
+    <video id="heroVideo1" class="hero-video active" src="video/video2.mp4" autoplay muted playsinline webkit-playsinline preload="auto" disablePictureInPicture></video>
+    <video id="heroVideo2" class="hero-video" src="video/multimedia.mp4" muted playsinline webkit-playsinline preload="auto" disablePictureInPicture></video>
+
     <script>
-      const heroVideo = document.getElementById('heroVideo');
-      const secondSrc = 'video/multimedia.mp4';
-      heroVideo.addEventListener('ended', () => {
-        if (heroVideo.dataset.switched) return;
-        heroVideo.src = secondSrc;
-        heroVideo.loop = false;
-        heroVideo.play();
-        heroVideo.dataset.switched = 'true';
-      });
+      (function () {
+        const v1 = document.getElementById('heroVideo1');
+        const v2 = document.getElementById('heroVideo2');
+        if (!v1 || !v2) return;
+
+        // Configuration stricte pour l'autoplay mobile (iOS Safari & Android Chrome)
+        [v1, v2].forEach(v => {
+          v.muted = true;
+          v.defaultMuted = true;
+          v.playsInline = true;
+          v.setAttribute('muted', '');
+          v.setAttribute('playsinline', '');
+          v.setAttribute('webkit-playsinline', '');
+        });
+
+        // Lecture sécurisée avec repli automatique sans bouton
+        function safePlay(video) {
+          if (!video) return;
+          video.muted = true;
+          const promise = video.play();
+          if (promise !== undefined) {
+            promise.catch(() => {
+              // Si le système bloque l'autoplay (ex: mode économie d'énergie mobile),
+              // le premier toucher ou léger défilement démarre la vidéo instantanément
+              const unlock = () => {
+                video.play().catch(() => {});
+                ['touchstart', 'touchend', 'click', 'scroll', 'pointerdown'].forEach(ev => {
+                  window.removeEventListener(ev, unlock, { capture: true });
+                });
+              };
+              ['touchstart', 'touchend', 'click', 'scroll', 'pointerdown'].forEach(ev => {
+                window.addEventListener(ev, unlock, { capture: true, once: true });
+              });
+            });
+          }
+        }
+
+        // Démarrage immédiat dès le chargement
+        safePlay(v1);
+
+        // Transition fluide en fondu croisé dès la fin de la première vidéo
+        v1.addEventListener('ended', () => {
+          v2.currentTime = 0;
+          safePlay(v2);
+          v2.classList.add('active');
+          v1.classList.remove('active');
+        });
+
+        // Rebouclage infini sur la première vidéo
+        v2.addEventListener('ended', () => {
+          v1.currentTime = 0;
+          safePlay(v1);
+          v1.classList.add('active');
+          v2.classList.remove('active');
+        });
+
+        // Relance si l'utilisateur change d'onglet ou déverrouille son téléphone
+        document.addEventListener('visibilitychange', () => {
+          if (!document.hidden) {
+            if (v2.classList.contains('active')) {
+              safePlay(v2);
+            } else {
+              safePlay(v1);
+            }
+          }
+        });
+      })();
     </script>
     <div class="hero-content container">
       <div class="hero-inner">
