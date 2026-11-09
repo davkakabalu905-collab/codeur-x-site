@@ -17,6 +17,10 @@
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto+Mono:wght@400;500;700&display=swap"
     rel="stylesheet" />
 
+  <!-- Preload Hero Video & Poster for Instant Autoplay -->
+  <link rel="preload" as="image" href="img/hero-poster.jpg" />
+  <link rel="preload" as="video" href="video/video2.mp4" type="video/mp4" />
+
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" />
 
@@ -101,8 +105,12 @@
        HERO SECTION
        ===================== -->
   <section class="hero" id="home">
-    <video id="heroVideo1" class="hero-video active" src="video/video2.mp4" autoplay muted playsinline webkit-playsinline preload="auto" disablePictureInPicture></video>
-    <video id="heroVideo2" class="hero-video" src="video/multimedia.mp4" muted playsinline webkit-playsinline preload="auto" disablePictureInPicture></video>
+    <video id="heroVideo1" class="hero-video active" autoplay muted playsinline webkit-playsinline preload="auto" poster="img/hero-poster.jpg" disablePictureInPicture>
+      <source src="video/video2.mp4" type="video/mp4" />
+    </video>
+    <video id="heroVideo2" class="hero-video" muted playsinline webkit-playsinline preload="auto" poster="img/multimedia-poster.jpg" disablePictureInPicture>
+      <source src="video/multimedia.mp4" type="video/mp4" />
+    </video>
 
     <script>
       (function () {
@@ -110,45 +118,67 @@
         const v2 = document.getElementById('heroVideo2');
         if (!v1 || !v2) return;
 
-        // Configuration stricte pour l'autoplay mobile (iOS Safari & Android Chrome)
+        // Configuration stricte pour l'autoplay garanti sur tous navigateurs et mobiles
         [v1, v2].forEach(v => {
           v.muted = true;
           v.defaultMuted = true;
+          v.volume = 0;
           v.playsInline = true;
           v.setAttribute('muted', '');
           v.setAttribute('playsinline', '');
           v.setAttribute('webkit-playsinline', '');
         });
 
-        // Lecture sécurisée avec repli automatique sans bouton
-        function safePlay(video) {
+        function startPlayback(video) {
           if (!video) return;
           video.muted = true;
-          const promise = video.play();
-          if (promise !== undefined) {
-            promise.catch(() => {
-              // Si le système bloque l'autoplay (ex: mode économie d'énergie mobile),
-              // le premier toucher ou léger défilement démarre la vidéo instantanément
-              const unlock = () => {
-                video.play().catch(() => {});
-                ['touchstart', 'touchend', 'click', 'scroll', 'pointerdown'].forEach(ev => {
-                  window.removeEventListener(ev, unlock, { capture: true });
-                });
-              };
-              ['touchstart', 'touchend', 'click', 'scroll', 'pointerdown'].forEach(ev => {
-                window.addEventListener(ev, unlock, { capture: true, once: true });
-              });
-            });
+          video.defaultMuted = true;
+          const p = video.play();
+          if (p !== undefined) {
+            p.catch(() => {});
           }
         }
 
-        // Démarrage immédiat dès le chargement
-        safePlay(v1);
+        // 1. Démarrage immédiat
+        startPlayback(v1);
+
+        // 2. Démarrage dès les événements de flux média
+        v1.addEventListener('loadedmetadata', () => { if (v1.paused) startPlayback(v1); });
+        v1.addEventListener('loadeddata', () => { if (v1.paused) startPlayback(v1); });
+        v1.addEventListener('canplay', () => { if (v1.paused) startPlayback(v1); });
+
+        // 3. Boucle de démarrage rapide (tente toutes les 100ms pendant 3s max tant que paused)
+        let attempts = 0;
+        const autoStarter = setInterval(() => {
+          attempts++;
+          if (!v1.paused || attempts > 30) {
+            clearInterval(autoStarter);
+          } else {
+            startPlayback(v1);
+          }
+        }, 100);
+
+        // 4. Au chargement du DOM et de la fenêtre
+        document.addEventListener('DOMContentLoaded', () => { if (v1.paused) startPlayback(v1); });
+        window.addEventListener('load', () => { if (v1.paused) startPlayback(v1); });
+
+        // 5. Repli immédiat dès la moindre interaction (si mode économie d'énergie extrême)
+        const unlock = () => {
+          if (v1.paused && !v2.classList.contains('active')) {
+            startPlayback(v1);
+          }
+          ['touchstart', 'touchend', 'click', 'scroll', 'pointerdown'].forEach(ev => {
+            window.removeEventListener(ev, unlock, { capture: true });
+          });
+        };
+        ['touchstart', 'touchend', 'click', 'scroll', 'pointerdown'].forEach(ev => {
+          window.addEventListener(ev, unlock, { capture: true, once: true });
+        });
 
         // Transition fluide en fondu croisé dès la fin de la première vidéo
         v1.addEventListener('ended', () => {
           v2.currentTime = 0;
-          safePlay(v2);
+          startPlayback(v2);
           v2.classList.add('active');
           v1.classList.remove('active');
         });
@@ -156,7 +186,7 @@
         // Rebouclage infini sur la première vidéo
         v2.addEventListener('ended', () => {
           v1.currentTime = 0;
-          safePlay(v1);
+          startPlayback(v1);
           v1.classList.add('active');
           v2.classList.remove('active');
         });
@@ -165,9 +195,9 @@
         document.addEventListener('visibilitychange', () => {
           if (!document.hidden) {
             if (v2.classList.contains('active')) {
-              safePlay(v2);
+              startPlayback(v2);
             } else {
-              safePlay(v1);
+              startPlayback(v1);
             }
           }
         });
