@@ -19,6 +19,8 @@
 
   <!-- Preload Hero Video & Poster for Instant Autoplay -->
   <link rel="preload" as="image" href="img/hero-poster.jpg" />
+  <link rel="preload" as="image" href="img/multimedia(1)-web.jpg" />
+  <link rel="preload" as="image" href="img/code1.jpg" />
   <link rel="preload" as="video" href="video/video2.mp4" type="video/mp4" />
 
   <!-- Icons -->
@@ -105,21 +107,23 @@
        HERO SECTION
        ===================== -->
   <section class="hero" id="home">
-    <video id="heroVideo1" class="hero-video active" autoplay muted playsinline webkit-playsinline preload="auto" poster="img/hero-poster.jpg" disablePictureInPicture>
+    <video id="heroVideo1" class="hero-video active" autoplay muted playsinline webkit-playsinline preload="auto"
+      poster="img/hero-poster.jpg" disablePictureInPicture>
       <source src="video/video2.mp4" type="video/mp4" />
     </video>
-    <video id="heroVideo2" class="hero-video" muted playsinline webkit-playsinline preload="auto" poster="img/multimedia-poster.jpg" disablePictureInPicture>
-      <source src="video/multimedia.mp4" type="video/mp4" />
-    </video>
+    <img id="heroMultimediaImage" class="hero-video" src="img/multimedia(1)-web.jpg" alt="Production multimédia CODEUR X" />
+    <img id="heroCodeImage" class="hero-video" src="img/code1.jpg" alt="Projet CODEUR X" />
 
     <script>
       (function () {
         const v1 = document.getElementById('heroVideo1');
-        const v2 = document.getElementById('heroVideo2');
-        if (!v1 || !v2) return;
+        const image = document.getElementById('heroMultimediaImage');
+        const codeImage = document.getElementById('heroCodeImage');
+        if (!v1 || !image || !codeImage) return;
+        const isShowingImage = () => image.classList.contains('active') || codeImage.classList.contains('active');
 
         // Configuration stricte pour l'autoplay garanti sur tous navigateurs et mobiles
-        [v1, v2].forEach(v => {
+        [v1].forEach(v => {
           v.muted = true;
           v.defaultMuted = true;
           v.volume = 0;
@@ -135,7 +139,7 @@
           video.defaultMuted = true;
           const p = video.play();
           if (p !== undefined) {
-            p.catch(() => {});
+            p.catch(() => { });
           }
         }
 
@@ -164,7 +168,7 @@
 
         // 5. Repli immédiat dès la moindre interaction (si mode économie d'énergie extrême)
         const unlock = () => {
-          if (v1.paused && !v2.classList.contains('active')) {
+          if (v1.paused && !isShowingImage()) {
             startPlayback(v1);
           }
           ['touchstart', 'touchend', 'click', 'scroll', 'pointerdown'].forEach(ev => {
@@ -175,28 +179,28 @@
           window.addEventListener(ev, unlock, { capture: true, once: true });
         });
 
-        // Transition fluide en fondu croisé dès la fin de la première vidéo
+        // Affiche chaque image pendant 10 secondes avant de relancer la vidéo
         v1.addEventListener('ended', () => {
-          v2.currentTime = 0;
-          startPlayback(v2);
-          v2.classList.add('active');
+          image.classList.add('active');
           v1.classList.remove('active');
-        });
 
-        // Rebouclage infini sur la première vidéo
-        v2.addEventListener('ended', () => {
-          v1.currentTime = 0;
-          startPlayback(v1);
-          v1.classList.add('active');
-          v2.classList.remove('active');
+          window.setTimeout(() => {
+            image.classList.remove('active');
+            codeImage.classList.add('active');
+
+            window.setTimeout(() => {
+              codeImage.classList.remove('active');
+              v1.currentTime = 0;
+              v1.classList.add('active');
+              startPlayback(v1);
+            }, 10000);
+          }, 10000);
         });
 
         // Relance si l'utilisateur change d'onglet ou déverrouille son téléphone
         document.addEventListener('visibilitychange', () => {
           if (!document.hidden) {
-            if (v2.classList.contains('active')) {
-              startPlayback(v2);
-            } else {
+            if (!isShowingImage()) {
               startPlayback(v1);
             }
           }
@@ -616,8 +620,8 @@
           class="social-btn" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
         <a href="https://www.instagram.com/codeurxofficiel?igsh=aXc1eXVkdDEwazN4" target="_blank" rel="noopener"
           class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://wa.me/243970037759" target="_blank" rel="noopener" class="social-btn"
-          aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://wa.me/243970037759" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp"><i
+            class="fab fa-whatsapp"></i></a>
       </div>
       <p class="footer-copy">© <span id="footerYear">2026</span> <span>CODEUR X</span>. Tous droits réservés.</p>
     </div>
